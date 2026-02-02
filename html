@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Sistema</title>
+
+  <link href="css/app.css" rel="stylesheet" />
+
+  <style>
+    .bar{
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bar-fill{
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(0,183,196,0.25), #00B7C4, rgba(0,183,196,0.25));
+      background-size: 220% 100%;
+      animation: shimmerMove 1.35s linear infinite;
+      transition: width .25s ease;
+    }
+
+    @keyframes shimmerMove{
+      0% { background-position: 0% 50%; }
+      100% { background-position: 220% 50%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="splash">
+      <div class="bar">
+        <div class="bar-fill" id="barFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      function startProgress() {
+        const bar = document.getElementById("barFill") || document.querySelector(".bar-fill");
+        if (!bar) return;
+
+        bar.style.width = "0%";
+
+        let p = 0;
+        const intervalMs = 240;
+        const minStep = 0.3;
+        const maxStep = 1.1;
+        const cap = 88;
+
+        const timer = setInterval(() => {
+          if (p < cap) {
+            p += (Math.random() * (maxStep - minStep)) + minStep;
+            if (p > cap) p = cap;
+            bar.style.width = Math.floor(p) + "%";
+          }
+        }, intervalMs);
+
+        window.addEventListener("load", () => {
+          clearInterval(timer);
+          bar.style.width = "100%";
+        });
+
+        setTimeout(() => {
+          if (parseInt(bar.style.width || "0", 10) < 100) {
+            clearInterval(timer);
+            bar.style.width = "100%";
+          }
+        }, 8000);
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startProgress);
+      } else {
+        startProgress();
+      }
+    })();
+  </script>
+
+  <script src="_framework/blazor.webassembly.js"></script>
+</body>
+</html>
