@@ -1,0 +1,48 @@
+<script>
+  (function () {
+    const bar = document.getElementById("barFill") || document.querySelector(".bar-fill");
+    if (!bar) return;
+
+    bar.style.width = "0%";
+
+    let p = 0;
+    const cap = 92;
+    const timer = setInterval(() => {
+      if (p < cap) {
+        p += (Math.random() * 1.2) + 0.4;
+        if (p > cap) p = cap;
+        bar.style.width = Math.floor(p) + "%";
+      }
+    }, 220);
+
+    function finishTo100() {
+      clearInterval(timer);
+      let current = Math.floor(p);
+      const fin = setInterval(() => {
+        current += 2;
+        if (current >= 100) {
+          current = 100;
+          clearInterval(fin);
+        }
+        bar.style.width = current + "%";
+      }, 30);
+    }
+
+    if (window.Blazor && typeof window.Blazor.start === "function") {
+      window.Blazor.start().then(() => {
+        finishTo100();
+      });
+    } else {
+      document.addEventListener("DOMContentLoaded", () => {
+        const wait = setInterval(() => {
+          if (window.Blazor && typeof window.Blazor.start === "function") {
+            clearInterval(wait);
+            window.Blazor.start().then(() => {
+              finishTo100();
+            });
+          }
+        }, 50);
+      });
+    }
+  })();
+</script>
