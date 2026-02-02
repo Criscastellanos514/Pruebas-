@@ -1,0 +1,42 @@
+<script>
+(function () {
+  const bar = document.getElementById("barfill");
+  if (!bar) return;
+
+  let raf = 0;
+  let start = 0;
+  let p = 0;
+  let loaded = false;
+
+  bar.style.transform = "scaleX(0)";
+
+  function tick(t) {
+    if (!start) start = t;
+
+    const elapsed = t - start;
+
+    const target = elapsed < 6500
+      ? 0.92 * (1 - Math.exp(-elapsed / 1600))
+      : 0.92;
+
+    p += (target - p) * 0.08;
+
+    if (loaded) p += (1 - p) * 0.18;
+
+    if (p > 0.999) p = 1;
+
+    bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
+
+    if (p < 1) raf = requestAnimationFrame(tick);
+  }
+
+  raf = requestAnimationFrame(tick);
+
+  function finish() {
+    loaded = true;
+    if (p < 0.98) p = 0.98;
+  }
+
+  window.addEventListener("load", finish);
+})();
+</script>
