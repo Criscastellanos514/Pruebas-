@@ -1,0 +1,232 @@
+@* ===========================
+   TOOLBAR SUPERIOR (Tabs + Filtros + Buscar)
+   Reemplaza tu bloque actual por este
+   =========================== *@
+
+<div class="topbar">
+    <!-- IZQUIERDA: TABS -->
+    <div class="topbar-left">
+        <Option _HandleClick="@(async()=> { await DisplayView("Todas"); })"
+                Title="Todas"
+                IconName="table"
+                Activo="@EsActivo("Todas")"
+                _HandleClass="SeleccionarOpcion" />
+
+        <Option _HandleClick="@(async()=> { await DisplayView("Tablero"); })"
+                Title="Tablero"
+                IconName="table-2"
+                Activo="@EsActivo("Tablero")"
+                _HandleClass="SeleccionarOpcion" />
+
+        <Option _HandleClick="@(async()=> { await DisplayView("Cronograma"); })"
+                Title="Cronograma"
+                IconName="calendar-check"
+                Activo="@EsActivo("Cronograma")"
+                _HandleClass="SeleccionarOpcion" />
+    </div>
+
+    <!-- DERECHA: FILTROS + BUSCADOR -->
+    <div class="topbar-right">
+        <!-- tus filtros (se dejan igual) -->
+        <Option Title="Filtrar"
+                IconName="arrow-down-wide-narrow"
+                Display="False"
+                EnviarFiltros="LlenarFiltros" />
+
+        <OptionDropDown Option="FillDictionary"
+                        removeToList="RemoveToList"
+                        FilterList="@FilterList"
+                        Filter="FillFilterList"
+                        IconName="arrow-down-up"
+                        MostrarIcono="true" />
+
+        <!-- botón lupa -->
+        <button type="button" class="icon-btn" @onclick="ToggleSearch" title="Buscar">
+            <i class="fas fa-search"></i>
+        </button>
+
+        <!-- input buscador -->
+        <div class="search-wrap @(SearchOpen ? "open" : "")">
+            <input class="search-input"
+                   @ref="_searchInputRef"
+                   placeholder="Buscar..."
+                   value="@SearchText"
+                   @oninput="OnSearchInput"
+                   @onkeydown="OnSearchKeyDown" />
+
+            @if (!string.IsNullOrWhiteSpace(SearchText))
+            {
+                <button type="button" class="clear-btn" @onclick="ClearSearch" title="Limpiar">✕</button>
+            }
+        </div>
+    </div>
+</div>
+
+<hr class="topbar-sep" />
+
+@code {
+    // ========= BUSCADOR =========
+    private bool SearchOpen = false;
+    private string SearchText = string.Empty;
+
+    private ElementReference _searchInputRef;
+    private CancellationTokenSource? _debounceCts;
+
+    // ✅ Este callback le avisa al componente padre para que filtre la data real
+    [Parameter] public EventCallback<string> OnSearchChanged { get; set; }
+
+    private async Task ToggleSearch()
+    {
+        SearchOpen = !SearchOpen;
+
+        if (SearchOpen)
+        {
+            await Task.Yield();
+            try { await _searchInputRef.FocusAsync(); } catch { }
+        }
+        else
+        {
+            await ClearSearch();
+        }
+    }
+
+    private async Task ClearSearch()
+    {
+        SearchText = string.Empty;
+        await NotifySearchChanged();
+    }
+
+    private async Task OnSearchInput(ChangeEventArgs e)
+    {
+        SearchText = e.Value?.ToString() ?? string.Empty;
+
+        // Debounce 250ms
+        _debounceCts?.Cancel();
+        _debounceCts = new CancellationTokenSource();
+        var token = _debounceCts.Token;
+
+        try
+        {
+            await Task.Delay(250, token);
+            await NotifySearchChanged();
+        }
+        catch (TaskCanceledException) { }
+    }
+
+    private async Task OnSearchKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            _debounceCts?.Cancel();
+            await NotifySearchChanged();
+        }
+
+        if (e.Key == "Escape")
+        {
+            await ToggleSearch();
+        }
+    }
+
+    private async Task NotifySearchChanged()
+    {
+        if (OnSearchChanged.HasDelegate)
+            await OnSearchChanged.InvokeAsync(SearchText);
+
+        StateHasChanged();
+    }
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin: 0 20px;
+    padding: 8px 0;
+}
+
+.topbar-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.topbar-sep{
+    margin-top: 8px;
+    opacity: .35;
+}
+
+/* botón lupa */
+.icon-btn{
+    border: 1px solid #d7dbe0;
+    background: #fff;
+    border-radius: 10px;
+    height: 34px;
+    width: 38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.icon-btn:hover{
+    background:#f4f6f8;
+}
+
+/* buscador */
+.search-wrap{
+    display:none;
+    position:relative;
+    align-items:center;
+}
+
+.search-wrap.open{
+    display:flex;
+}
+
+.search-input{
+    height:34px;
+    width: 220px;
+    border: 1px solid #d7dbe0;
+    border-radius: 10px;
+    padding: 0 34px 0 12px;
+    outline:none;
+    background:#fff;
+}
+
+.search-input:focus{
+    border-color:#7aa7ff;
+    box-shadow: 0 0 0 3px rgba(122,167,255,.25);
+}
+
+.clear-btn{
+    position:absolute;
+    right:8px;
+    height:22px;
+    width:22px;
+    border:none;
+    background:#eef1f4;
+    border-radius: 999px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+}
+
+.clear-btn:hover{
+    background:#dfe5ea;
+}
+
+@media (max-width: 768px){
+    .search-input{ width: 160px; }
+    .topbar{ margin: 0 10px; }
+}
