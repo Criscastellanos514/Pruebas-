@@ -46,3 +46,78 @@
   color:#555 !important;
   font-weight:700 !important;
 }
+
+/* ============================
+   TOPBAR FIX: iconos ADENTRO + centrado real
+   ============================ */
+
+.topbar{
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  height: 46px !important;            /* barra fina */
+  padding: 0 14px !important;
+  border-radius: 14px !important;
+
+  background: linear-gradient(90deg, #00BFA6 0%, #00A7E1 45%, #00BFA6 100%) !important;
+  overflow: hidden !important;         /* OBLIGA a que nada se salga */
+}
+
+/* izquierda / derecha dentro de la barra */
+.topbar-left,
+.topbar-right{
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  height: 100% !important;
+}
+
+/* esto evita que alguna cosa se vaya con absolute */
+.topbar-left *,
+.topbar-right *{
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+/* fuerza blanco */
+.topbar,
+.topbar *{
+  color: #fff !important;
+}
+
+.topbar svg,
+.topbar svg *{
+  fill: #fff !important;
+  stroke: #fff !important;
+}
+
+/* buscador dentro del flujo */
+.topbar-search{
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.topbar-search-input{
+  width: 240px !important;
+  height: 30px !important;
+  border: 0 !important;
+  outline: none !important;
+  border-radius: 999px !important;
+
+  background: #fff !important;
+  color: #222 !important;
+  font-weight: 800 !important;
+
+  padding: 0 14px !important;
+}
+
+.topbar-search-input::placeholder{
+  color: #666 !important;
+  font-weight: 800 !important;
+}
