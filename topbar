@@ -1,0 +1,182 @@
+/* =========================================================
+   TOP BAR (Davivienda style)
+   Archivo: ContainerBase.razor.css
+   Pega TODO este contenido (reemplaza lo anterior)
+   ========================================================= */
+
+/* --- Barra superior roja --- */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  /* Barra fina */
+  height:42px;
+  min-height:42px;
+  padding:0 14px;
+
+  background:#D61F26;           /* rojo */
+  border-radius:12px;
+  margin:0 20px;
+
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
+
+  flex-wrap:nowrap;
+  overflow:hidden;
+}
+
+/* Contenedor izquierdo (Todas/Tablero/Cronograma) */
+.topbar-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+/* Contenedor derecho (iconos + buscador) */
+.topbar-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+/* =========================================================
+   FORZAR BLANCO (texto + iconos) DENTRO DE LA BARRA
+   (Esto evita que el componente Option ponga otro color)
+   ========================================================= */
+.topbar :deep(*){
+  color:#fff !important;
+}
+
+/* Botones/textos dentro de tus Options */
+.topbar :deep(button),
+.topbar :deep(a),
+.topbar :deep(span),
+.topbar :deep(i),
+.topbar :deep(p),
+.topbar :deep(label),
+.topbar :deep(.SeleccionarOpcion),
+.topbar :deep(.SeleccionarOpcion *){
+  color:#fff !important;
+}
+
+/* Iconos SVG */
+.topbar :deep(svg),
+.topbar :deep(svg *){
+  fill:#fff !important;
+  stroke:#fff !important;
+}
+
+/* Iconos que sean imagen */
+.topbar :deep(img){
+  filter:brightness(0) invert(1) !important;
+}
+
+/* =========================================================
+   BOTONES (opciones) – look limpio y centrado
+   ========================================================= */
+.topbar :deep(.SeleccionarOpcion),
+.topbar :deep(button){
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px;
+
+  height:32px !important;
+  padding:0 10px !important;
+
+  background:transparent !important;
+  border:none !important;
+  border-radius:10px !important;
+
+  font-weight:600 !important;
+  font-size:13px !important;
+
+  cursor:pointer !important;
+  white-space:nowrap !important;
+}
+
+/* Hover suave */
+.topbar :deep(.SeleccionarOpcion:hover),
+.topbar :deep(button:hover){
+  background:rgba(255,255,255,.14) !important;
+}
+
+/* “Activo” si tu clase activa existe */
+.topbar :deep(.active),
+.topbar :deep(.Activo),
+.topbar :deep(.option-active){
+  background:rgba(255,255,255,.18) !important;
+}
+
+/* =========================================================
+   BUSCADOR (blanco, palabra en negrita, icono rojo)
+   ========================================================= */
+
+/* Wrapper del buscador (si lo tenés) */
+.topbar-search{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* Input buscador */
+.topbar-search-input{
+  width:260px;
+  height:30px;                /* para barra fina */
+  padding:0 40px 0 14px;      /* espacio icono derecha */
+  border-radius:999px;
+
+  border:1px solid rgba(255,255,255,.75);
+  background:#ffffff;
+
+  outline:none;
+  font-size:13px;
+  font-weight:700;            /* palabra en negrita */
+  color:#111;                 /* texto negro dentro del input */
+}
+
+/* Placeholder */
+.topbar-search-input::placeholder{
+  color:#444;
+  font-weight:700;
+}
+
+/* Icono de lupa dentro del buscador (si lo pintas como elemento separado) */
+.topbar-search-icon{
+  width:30px;
+  height:30px;
+  border-radius:999px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#ffffff;
+}
+
+/* Si la lupa es SVG dentro de .topbar-search-icon */
+.topbar-search-icon :deep(svg),
+.topbar-search-icon :deep(svg *){
+  fill:#D61F26 !important;
+  stroke:#D61F26 !important;
+}
+
+/* =========================================================
+   RESPONSIVE (para pantallas pequeñas)
+   ========================================================= */
+@media (max-width: 900px){
+  .topbar{
+    margin:0 10px;
+  }
+  .topbar-search-input{
+    width:180px;
+  }
+}
+
+@media (max-width: 600px){
+  .topbar-search-input{
+    display:none; /* ocultar input si no cabe */
+  }
+}
