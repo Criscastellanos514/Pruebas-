@@ -121,3 +121,148 @@
   color: #666 !important;
   font-weight: 800 !important;
 }
+
+
+
+/* ===============================
+   TOPBAR (barra superior) - FULL
+   =============================== */
+
+.topbar{
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  height: 44px !important;                 /* fina */
+  padding: 0 14px !important;
+  border-radius: 14px !important;
+
+  background: linear-gradient(90deg, #00BFA6 0%, #00A7E1 45%, #00BFA6 100%) !important;
+  box-shadow: 0 10px 22px rgba(0,0,0,.18) !important;
+
+  overflow: hidden !important;             /* nada se sale */
+}
+
+/* contenedores izquierda / derecha */
+.topbar-left,
+.topbar-right{
+  display: flex !important;
+  align-items: center !important;          /* CENTRADO vertical real */
+  height: 100% !important;
+  gap: 10px !important;
+}
+
+/* evita “descuadres” por estilos heredados */
+.topbar-left *,
+.topbar-right *{
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+}
+
+/* fuerza blanco en TODO lo de la barra */
+.topbar,
+.topbar *{
+  color: #fff !important;
+}
+
+/* fuerza iconos blancos (svg) */
+.topbar svg,
+.topbar svg *{
+  fill: #fff !important;
+  stroke: #fff !important;
+}
+
+/* ===============================
+   BOTONES/OPCIONES (Tus “Todas/Tablero/Cronograma” + iconos derecha)
+   =============================== */
+
+/* la clase que tú usas: HandleClass="SeleccionarOpcion" */
+.SeleccionarOpcion{
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  height: 30px !important;
+  padding: 0 12px !important;
+  gap: 8px !important;
+
+  border-radius: 999px !important;
+  border: 1px solid rgba(255,255,255,.25) !important;
+  background: rgba(255,255,255,.10) !important;
+
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+
+  cursor: pointer !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+}
+
+.SeleccionarOpcion:hover{
+  background: rgba(255,255,255,.18) !important;
+  border-color: rgba(255,255,255,.35) !important;
+}
+
+/* si tu componente marca el activo con alguna clase, le damos “pill” más fuerte */
+.SeleccionarOpcion.active,
+.SeleccionarOpcion.Activo,
+.SeleccionarOpcion.is-active{
+  background: rgba(0,0,0,.18) !important;
+  border-color: rgba(255,255,255,.55) !important;
+}
+
+/* tamaño uniforme a los svg dentro de las opciones */
+.SeleccionarOpcion svg{
+  width: 16px !important;
+  height: 16px !important;
+  flex: 0 0 auto !important;
+}
+
+/* si hay “opciones” de solo icono, que no se deformen */
+.topbar-right .SeleccionarOpcion{
+  padding: 0 10px !important;
+}
+
+/* ===============================
+   BUSCADOR (dentro de la barra)
+   =============================== */
+
+.topbar-search{
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.topbar-search-input{
+  width: 240px !important;
+  height: 30px !important;
+
+  border: 0 !important;
+  outline: none !important;
+  border-radius: 999px !important;
+
+  background: #ffffff !important;
+  color: #1b1b1b !important;
+  font-weight: 800 !important;
+
+  padding: 0 14px !important;
+}
+
+.topbar-search-input::placeholder{
+  color: #666 !important;
+  font-weight: 800 !important;
+}
+
+/* ===============================
+   RESPONSIVE (si se achica)
+   =============================== */
+@media (max-width: 900px){
+  .topbar-search-input{ width: 160px !important; }
+  .SeleccionarOpcion{ font-size: 12px !important; padding: 0 10px !important; }
+}
