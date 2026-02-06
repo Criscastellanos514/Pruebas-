@@ -266,3 +266,105 @@
   .topbar-search-input{ width: 160px !important; }
   .SeleccionarOpcion{ font-size: 12px !important; padding: 0 10px !important; }
 }
+
+
+/* =========================
+   TOPBAR (barra turquesa)
+   ========================= */
+
+.topbar{
+  width: 100%;
+  height: 44px;                 /* barra fina */
+  padding: 0 16px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(90deg,#00A7E1 0%, #00BFA6 100%);
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.20);
+}
+
+/* izquierda: Tabs (Todas / Tablero / Cronograma) */
+.topbar-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width: 0;
+}
+
+/* derecha: iconos (filtro/ordenar/lupa/etc) + buscador */
+.topbar-right{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:12px;
+  min-width: 0;
+}
+
+/* Fuerza a que TODO lo que esté dentro se alinee bien */
+.topbar-left > *,
+.topbar-right > *{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* =========================
+   Iconos y texto en BLANCO
+   (para componentes hijos)
+   ========================= */
+
+/* Blazor CSS isolation: usa ::deep para entrar a los componentes */
+::deep .topbar,
+::deep .topbar *{
+  color:#fff !important;
+}
+
+/* SVG: blanco */
+::deep .topbar svg,
+::deep .topbar svg *{
+  fill:#fff !important;
+  stroke:#fff !important;
+}
+
+/* Si tus tabs tienen texto, que sea blanco */
+::deep .topbar-left span,
+::deep .topbar-left a,
+::deep .topbar-left button{
+  color:#fff !important;
+  font-weight:700;
+}
+
+/* =========================
+   BUSCADOR (blanco, separado)
+   ========================= */
+.topbar-search{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.topbar-search-input{
+  width: 220px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  padding: 0 14px;
+
+  background:#fff;
+  color:#111 !important;
+  font-weight:700;
+}
+
+.topbar-search-input::placeholder{
+  color:#555 !important;
+  font-weight:700;
+}
+
+/* Para que el buscador no “bote” el layout */
+@media (max-width: 900px){
+  .topbar-search-input{ width: 160px; }
+}
