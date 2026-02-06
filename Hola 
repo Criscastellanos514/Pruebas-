@@ -106,3 +106,57 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.18);
 }
+
+
+@*Barra de Orden/Filtro*@
+<div style="width:12%; position:relative; @(FilterList.Count > 0 ? "" : "display:none")">
+
+    @*Boton de Orden*@
+    <div @onclick="showModal"
+         class="orderFilterBtn"
+         style="@(FilterList.Count == 0 ? "display:none" : "display:flex")">
+
+        <Icons Name="arrow-down-up" Width="16" Height="16" />
+
+        @if (FilterList.Count > 1)
+        {
+            <span style="font-size:small">@FilterList.Count órdenes</span>
+        }
+        else
+        {
+            <span style="font-size:small">@FirstFilter</span>
+        }
+    </div>
+
+</div>
+
+/* ===========================
+   BOTÓN ORDEN/FILTRO
+   =========================== */
+.orderFilterBtn{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:center;
+
+  width:100%;
+  height:26px;
+
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.55);
+
+  background: transparent;        /* NO azul */
+  color:#fff !important;          /* TEXTO BLANCO */
+}
+
+/* Forzar blanco en texto dentro */
+.orderFilterBtn :deep(*){
+  color:#fff !important;
+}
+
+/* Forzar blanco en iconos SVG */
+.orderFilterBtn :deep(svg),
+.orderFilterBtn :deep(svg *){
+  fill:#fff !important;
+  stroke:#fff !important;
+}
