@@ -203,7 +203,35 @@
 }
 
 
+/* ===== FORZAR BLANCO EN TODO DENTRO DE LA TOPBAR ===== */
+.topbar :deep(*),
+.topbar :deep(*::before),
+.topbar :deep(*::after){
+    color: #fff !important;
+}
 
+/* por si el texto está en <a>, <button>, <span>, etc */
+.topbar :deep(a),
+.topbar :deep(button),
+.topbar :deep(span),
+.topbar :deep(p),
+.topbar :deep(div){
+    color: #fff !important;
+}
+
+/* ÍCONOS SVG (muchas veces no siguen "color") */
+.topbar :deep(svg){
+    color: #fff !important;
+}
+.topbar :deep(svg *){
+    fill: #fff !important;
+    stroke: #fff !important;
+}
+
+/* Placeholder del input */
+.topbar :deep(.topbar-search-input::placeholder){
+    color: rgba(255,255,255,.90) !important;
+}
 
 
 
