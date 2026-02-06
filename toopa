@@ -100,3 +100,110 @@
 .topbar-right{
     flex-wrap: nowrap !important;
 }
+
+<input @oninput="AssignText"
+       class="topbar-search-input"
+       style="@(Search ? "display:block;" : "display:none;")"
+       type="text"
+       placeholder="Buscar..." />
+
+
+
+       /* ===== TOP BAR (Davivienda vibe) ===== */
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    /* MISMA POSICIÓN DE ANTES */
+    margin: 0px 20px;
+
+    /* BARRA MÁS FINA */
+    padding: 8px 14px;
+    min-height: 44px;
+
+    /* Color tipo Davivienda */
+    background: linear-gradient(90deg, #C8102E 0%, #E31837 55%, #B30D24 100%);
+    border-radius: 18px;
+
+    box-shadow: 0 10px 24px rgba(0,0,0,.18);
+}
+
+/* Contenedores internos (no cambian tu layout) */
+.topbar > div{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+}
+
+/* ===== Fuerza blanco en textos e íconos dentro de la barra ===== */
+/* :deep() es CLAVE en Blazor para que el CSS "entre" a componentes */
+.topbar :deep(*){
+    color: #fff !important;
+}
+
+/* Si tus Option usan HandleClass="SeleccionarOpcion" */
+.topbar :deep(.SeleccionarOpcion){
+    display:flex !important;
+    align-items:center !important;
+    gap: 8px !important;
+
+    padding: 8px 12px !important;
+    border-radius: 14px !important;
+
+    background: rgba(255,255,255,.10) !important;
+    border: 1px solid rgba(255,255,255,.18) !important;
+
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    line-height: 1 !important;
+
+    cursor:pointer !important;
+    transition: transform .12s ease, background .12s ease;
+}
+
+.topbar :deep(.SeleccionarOpcion:hover){
+    background: rgba(255,255,255,.16) !important;
+    transform: translateY(-1px);
+}
+
+/* Íconos SVG blancos (si se te “pierden”) */
+.topbar :deep(svg),
+.topbar :deep(path){
+    fill: #fff !important;
+    stroke: #fff !important;
+}
+
+/* ===== Buscador tipo "pill" ===== */
+.topbar-search-input{
+    width: 260px;
+    height: 34px;
+
+    padding: 0 14px;
+    border-radius: 999px;
+
+    border: 1px solid rgba(255,255,255,.35);
+    background: rgba(255,255,255,.16);
+
+    outline: none;
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.topbar-search-input::placeholder{
+    color: rgba(255,255,255,.85);
+    font-weight: 500;
+}
+
+/* Cuando hace focus, se ve pro */
+.topbar-search-input:focus{
+    background: rgba(255,255,255,.22);
+    border: 1px solid rgba(255,255,255,.55);
+    box-shadow: 0 8px 20px rgba(0,0,0,.18);
+}
+
+
+
+
+
+
