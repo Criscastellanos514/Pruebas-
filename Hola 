@@ -317,3 +317,81 @@
   fill:#fff !important;
   stroke:#fff !important;
 }
+
+/* ======================================================
+   FIX DEFINITIVO: ICONOS DENTRO DE LA TOPBAR (NO SE PIERDEN)
+   PÉGALO AL FINAL del ContainerBase.razor.css
+   ====================================================== */
+
+.topbar{
+  height: 44px;              /* barra fina */
+  display:flex;
+  align-items:center;
+  overflow: visible;         /* que no recorte */
+}
+
+.topbar-left,
+.topbar-right{
+  height: 100%;
+  display:flex;
+  align-items:center;
+}
+
+.topbar-left{ gap: 12px; }
+.topbar-right{ gap: 10px; }
+
+/* 🔥 Neutraliza estilos internos raros de tus componentes Option */
+::deep .topbar *{
+  position: static !important;     /* evita que se “suban” */
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+/* Fuerza que cualquier botón/link dentro de la barra sea centrado */
+::deep .topbar button,
+::deep .topbar a,
+::deep .topbar .btn,
+::deep .topbar .SeleccionarOpcion,
+::deep .topbar [role="button"]{
+  height: 100% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 0 10px !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+}
+
+/* SVG siempre centrado y visible */
+::deep .topbar svg{
+  display:block !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* iconos en blanco (ya lo tenías, lo refuerzo) */
+::deep .topbar svg,
+::deep .topbar svg *{
+  fill:#fff !important;
+  stroke:#fff !important;
+}
+
+/* buscador: que no empuje ni desordene */
+.topbar-search{
+  display:flex;
+  align-items:center;
+  height: 100%;
+}
+
+.topbar-search-input{
+  height: 32px;
+  margin: 0 !important;
+}
