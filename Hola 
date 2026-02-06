@@ -160,3 +160,160 @@
   fill:#fff !important;
   stroke:#fff !important;
 }
+
+
+/* ==========================================================
+   TOPBAR (Barra roja: Tabs + Filtros + Buscador + Opciones)
+   ========================================================== */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+
+  /* Barra fina */
+  height:44px;
+  padding:0 16px;
+  margin:10px 12px 0 12px;
+
+  /* Davivienda vibes */
+  background: linear-gradient(90deg, #B31217 0%, #D21F26 45%, #B31217 100%);
+  border-radius:14px;
+
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+
+/* Lados */
+.topbar-left,
+.topbar-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* ==========================================================
+   BOTONES / OPCIONES (Todos, Tablero, Cronograma, iconos)
+   Nota: <Option ... HandleClass="SeleccionarOpcion" />
+   ========================================================== */
+
+.SeleccionarOpcion{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  padding:8px 12px;
+  height:32px;
+
+  border-radius:12px;
+  cursor:pointer;
+
+  /* transparente pero visible */
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.22);
+
+  /* letras blancas */
+  color:#fff !important;
+
+  transition: transform .08s ease, background .15s ease, border-color .15s ease;
+}
+
+/* Hover */
+.SeleccionarOpcion:hover{
+  background: rgba(255,255,255,.16);
+  border-color: rgba(255,255,255,.28);
+  transform: translateY(-1px);
+}
+
+/* Activo (por si tu componente marca active/activo) */
+.SeleccionarOpcion.active,
+.SeleccionarOpcion.activo,
+.SeleccionarOpcion.is-active{
+  background: rgba(255,255,255,.22);
+  border-color: rgba(255,255,255,.38);
+}
+
+/* Forzar texto blanco dentro del Option */
+.SeleccionarOpcion :deep(*){
+  color:#fff !important;
+}
+
+/* Forzar iconos (svg) en blanco */
+.SeleccionarOpcion :deep(svg),
+.SeleccionarOpcion :deep(svg *){
+  fill:#fff !important;
+  stroke:#fff !important;
+}
+
+/* ==========================================================
+   BUSCADOR (blanco, redondeado, placeholder en negrita)
+   ========================================================== */
+
+.topbar-search{
+  display:flex;
+  align-items:center;
+}
+
+.topbar-search-input{
+  width:260px;
+  height:32px;
+
+  padding:0 14px;
+  border-radius:999px;
+
+  background:#ffffff;
+  border:1px solid rgba(255,255,255,.45);
+  outline:none;
+
+  font-weight:700;           /* “Buscar…” y texto en negrita */
+  color:#2b2b2b;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,.08);
+}
+
+.topbar-search-input::placeholder{
+  font-weight:700;
+  color:#5a5a5a;
+}
+
+/* ==========================================================
+   ICONOS DE LA DERECHA (filtro, ordenar, buscar, opciones)
+   Si alguno no está usando SeleccionarOpcion, igual lo forzamos
+   ========================================================== */
+
+.topbar-right :deep(svg),
+.topbar-right :deep(svg *),
+.topbar-left  :deep(svg),
+.topbar-left  :deep(svg *){
+  fill:#fff !important;
+  stroke:#fff !important;
+}
+
+/* ==========================================================
+   BOTÓN ORDEN/FILTRO (el que ya estabas tocando)
+   ========================================================== */
+
+.orderFilterBtn{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:center;
+
+  width:100%;
+  height:26px;
+
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.55);
+
+  background: transparent;
+  color:#fff !important;
+}
+
+.orderFilterBtn :deep(*){
+  color:#fff !important;
+}
+
+.orderFilterBtn :deep(svg),
+.orderFilterBtn :deep(svg *){
+  fill:#fff !important;
+  stroke:#fff !important;
+}
