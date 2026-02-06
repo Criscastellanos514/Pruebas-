@@ -46,3 +46,40 @@
     }
   })();
 </script>
+
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 0 20px;
+    padding: 8px 0;
+}
+
+.contenedor-boton {
+    min-width: 150px;
+    border: 1px solid #e2e2e2;
+    padding: 6px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.modalOption {
+    position: absolute;
+    width: 400px;
+    background-color: white;
+    z-index: 10;
+    top: 25px;
+    border-radius: 11px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container-scrollable {
+    height: calc(100vh - 10vh);
+    overflow-y: auto;
+}
