@@ -1,0 +1,66 @@
+@* ===========================
+   TOOLBAR SUPERIOR (Tabs + Filtros + Buscar)
+   =========================== *@
+
+<div class="topbar">
+    <!-- IZQUIERDA: TABS -->
+    <div class="topbar-left">
+        <Option _HandleClick="@(async()=> { await DisplayView("Todas"); })"
+                Title="Todas"
+                IconName="table"
+                Activo="@EsActivo("Todas")"
+                _HandleClass="SeleccionarOpcion" />
+
+        <Option _HandleClick="@(async()=> { await DisplayView("Tablero"); })"
+                Title="Tablero"
+                IconName="table-2"
+                Activo="@EsActivo("Tablero")"
+                _HandleClass="SeleccionarOpcion" />
+
+        <Option _HandleClick="@(async()=> { await DisplayView("Cronograma"); })"
+                Title="Cronograma"
+                IconName="calendar-check"
+                Activo="@EsActivo("Cronograma")"
+                _HandleClass="SeleccionarOpcion" />
+    </div>
+
+    <!-- DERECHA: FILTROS + BUSCADOR -->
+    <div class="topbar-right">
+        <!-- filtros (dejas tus componentes como están) -->
+        <Option Title="Filtrar"
+                IconName="arrow-down-wide-narrow"
+                Display="False"
+                EnviarFiltros="LlenarFiltros" />
+
+        <OptionDropDown Option="FillDictionary"
+                        removeToList="RemoveToList"
+                        FilterList="@FilterList"
+                        Filter="FillFilterList"
+                        IconName="arrow-down-up"
+                        MostrarIcono="true" />
+
+        <!-- botón lupa: abre/cierra buscador -->
+        <button type="button" class="icon-btn" @onclick="ToggleSearch" title="Buscar">
+            <i class="fas fa-search"></i>
+        </button>
+
+        <!-- input buscador -->
+        <div class="search-wrap @(SearchOpen ? "open" : "")">
+            <input class="search-input"
+                   @ref="_searchInputRef"
+                   placeholder="Buscar..."
+                   value="@SearchText"
+                   @oninput="OnSearchInput"
+                   @onkeydown="OnSearchKeyDown" />
+
+            @if (!string.IsNullOrWhiteSpace(SearchText))
+            {
+                <button type="button" class="clear-btn" @onclick="ClearSearch" title="Limpiar">
+                    ✕
+                </button>
+            }
+        </div>
+    </div>
+</div>
+
+<hr class="topbar-sep" />
