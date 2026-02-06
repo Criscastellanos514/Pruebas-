@@ -1,0 +1,102 @@
+/* ===== FIX TOPBAR: ICONOS VISIBLES + CENTRADOS + TEXTO BLANCO ===== */
+
+.topbar{
+    margin: 0 20px !important;
+    height: 34px !important;
+    padding: 4px 10px !important;
+    border-radius: 12px !important;
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap: 10px !important;
+
+    background: #E6002D !important;
+    box-shadow: 0 6px 16px rgba(230,0,45,0.20) !important;
+}
+
+.topbar-left,
+.topbar-right{
+    display:flex !important;
+    align-items:center !important;
+    gap: 8px !important;
+}
+
+/* 1) Fuerza TODO el texto de la barra a blanco */
+.topbar, .topbar *{
+    color: #fff !important;
+}
+
+/* 2) Viñetas/Options: centrado perfecto + pill */
+:deep(.SeleccionarOpcion){
+    height: 26px !important;
+    min-width: 90px !important;
+    padding: 0 12px !important;
+
+    border-radius: 999px !important;
+    background: rgba(255,255,255,0.14) !important;
+    border: 1px solid rgba(255,255,255,0.22) !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+
+    white-space: nowrap !important;
+    cursor: pointer !important;
+}
+
+:deep(.SeleccionarOpcion:hover){
+    background: rgba(255,255,255,0.22) !important;
+}
+
+/* 3) ÍCONOS: pinta SVG e IMG en blanco + tamaño fijo */
+:deep(.SeleccionarOpcion svg){
+    width: 16px !important;
+    height: 16px !important;
+    fill: #fff !important;
+    stroke: #fff !important;
+    flex: 0 0 auto !important;
+}
+
+:deep(.SeleccionarOpcion svg *){
+    fill: #fff !important;
+    stroke: #fff !important;
+}
+
+:deep(.SeleccionarOpcion img){
+    width: 16px !important;
+    height: 16px !important;
+    filter: brightness(0) invert(1) !important; /* convierte iconos negros a blancos */
+    flex: 0 0 auto !important;
+}
+
+/* 4) Buscador tipo viñeta */
+.topbar-pill{
+    height: 26px !important;
+    width: 180px !important;
+    padding: 0 12px !important;
+
+    border-radius: 999px !important;
+    background: rgba(255,255,255,0.14) !important;
+    border: 1px solid rgba(255,255,255,0.22) !important;
+
+    color: #fff !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    outline: none !important;
+}
+
+.topbar-pill::placeholder{
+    color: rgba(255,255,255,0.90) !important;
+    font-weight: 600 !important;
+}
+
+/* 5) Evita que el input se baje o se deforme */
+.topbar-right{
+    flex-wrap: nowrap !important;
+}
