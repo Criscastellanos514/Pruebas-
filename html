@@ -179,3 +179,70 @@
        class="topbar-search"
        style="@(Search ? "display:block" : "display:none")"
        type="text" placeholder="Buscar..." />
+
+
+      /* ===== TOPBAR FINO + PÍLDORAS ===== */
+.topbar{
+    margin: 0 20px;
+    height: 34px;                 /* fina */
+    padding: 4px 8px;
+    border-radius: 12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 10px;
+
+    background: #E6002D;          /* rojo tipo Davivienda */
+    box-shadow: 0 6px 16px rgba(230,0,45,0.20);
+}
+
+.topbar-left,
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+}
+
+/* Tus <Option/> (componente hijo) -> :deep para que pinte */
+:deep(.SeleccionarOpcion){
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.22);
+
+    color: #fff !important;
+    font-size: 12px;
+    font-weight: 600;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+:deep(.SeleccionarOpcion:hover){
+    background: rgba(255,255,255,0.20);
+}
+
+/* Buscador como otra viñeta/píldora */
+.topbar-pill{
+    height: 26px;
+    width: 170px;                 /* pequeño */
+    padding: 0 10px;
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.22);
+
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    outline: none;
+}
+
+.topbar-pill::placeholder{
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+} 
