@@ -253,8 +253,119 @@ input[type="text"]:focus {
     cursor: pointer;
 
     transition: transform 0.2s ease;
-}
+}<div class="topbar">
+    <div class="topbar-left">
+        @* aquí va tu bloque de opciones (Todas/Tablero/Cronograma y el +) *@
+        @* NO CAMBIES tu contenido, solo déjalo dentro *@
+        @* Ejemplo: tus <Option .../> quedan aquí tal cual *@
+    </div>
+
+    <div class="topbar-right">
+        @* aquí va tu bloque de Filtrar / Dropdown / Buscar / Input *@
+        @* NO CAMBIES tu contenido, solo déjalo dentro *@
+    </div>
+</div>
+
+
 
 .search-pill .search-icon:hover {
     transform: translateY(-50%) scale(1.1);
+}
+
+
+/* ====== TOP BAR (barra superior bonita) ====== */
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+
+    margin: 10px 20px;
+    padding: 14px 16px;
+
+    background: linear-gradient(135deg, #ff4d6d, #ff6a3d);
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+
+    position: sticky;
+    top: 10px;
+    z-index: 50;
+}
+
+.topbar-left,
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+/* ====== Botones / Opciones tipo "chip" ====== */
+.topbar :is(button, .Option, .contenedor-boton, .btn, a){
+    border-radius: 999px !important;
+}
+
+/* Si tus botones son divs con clase .contenedor-boton */
+.contenedor-boton{
+    background: rgba(255,255,255,0.20);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 10px 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    color: #fff;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+}
+
+.contenedor-boton:hover{
+    background: rgba(255,255,255,0.28);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.18);
+}
+
+/* ====== Caja de búsqueda tipo "search bar" ====== */
+.topbar input[type="text"],
+.topbar input{
+    height: 42px;
+    width: 280px;
+    max-width: 42vw;
+    border: none !important;
+    outline: none !important;
+    border-radius: 999px;
+
+    padding: 0 16px;
+    background: rgba(255,255,255,0.92);
+    color:#222;
+
+    box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+.topbar input::placeholder{
+    color:#666;
+}
+
+/* ====== Iconos dentro de la barra (si hay svg o img) ====== */
+.topbar svg,
+.topbar img{
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+/* ====== Ajuste responsive ====== */
+@media (max-width: 900px){
+    .topbar{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .topbar-left,
+    .topbar-right{
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .topbar input{
+        width: 100%;
+        max-width: 100%;
+    }
 }
