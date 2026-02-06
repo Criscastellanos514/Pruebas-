@@ -1,0 +1,48 @@
+/* ============================
+   FIX FINAL: CENTRADO + TURQUESA + BLANCO (override fuerte)
+   Pegar al FINAL del archivo
+   ============================ */
+
+.topbar{
+  justify-content: center !important;  /* centra el contenido */
+  align-items: center !important;
+  background: linear-gradient(90deg, #00BFA6 0%, #00A7E1 45%, #00BFA6 100%) !important; /* turquesa */
+}
+
+/* separa izquierda y derecha sin descentrar */
+.topbar-left{
+  margin-right: auto !important;
+}
+.topbar-right{
+  margin-left: auto !important;
+}
+
+/* fuerza blanco en TODO lo de la barra (texto) */
+.topbar,
+.topbar *{
+  color: #fff !important;
+}
+
+/* fuerza blanco en iconos svg */
+.topbar svg,
+.topbar svg *{
+  fill: #fff !important;
+  stroke: #fff !important;
+}
+
+/* Si tus opciones siguen tomando estilos internos */
+.topbar-left .SeleccionarOpcion,
+.topbar-right .SeleccionarOpcion{
+  color:#fff !important;
+}
+
+/* buscador: blanco */
+.topbar-search-input{
+  background:#fff !important;
+  color:#222 !important;
+  font-weight:700 !important;
+}
+.topbar-search-input::placeholder{
+  color:#555 !important;
+  font-weight:700 !important;
+}
