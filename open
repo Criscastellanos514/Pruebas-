@@ -1,0 +1,101 @@
+<style>
+/* ====== TOPBAR (Tabs + filtros + buscar) ====== */
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin:0 20px;
+    padding:8px 0;
+}
+
+.topbar-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* Línea separadora debajo */
+.topbar-sep{
+    margin-top:8px;
+    opacity:.35;
+}
+
+/* Botón de icono (lupa) */
+.icon-btn{
+    border:1px solid #d7dbe0;
+    background:#fff;
+    border-radius:10px;
+    height:34px;
+    width:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.icon-btn:hover{
+    background:#f4f6f8;
+}
+
+/* Contenedor del buscador */
+.search-wrap{
+    display:none;
+    position:relative;
+    align-items:center;
+}
+
+.search-wrap.open{
+    display:flex;
+}
+
+/* Input de búsqueda */
+.search-input{
+    height:34px;
+    width:220px;
+    border:1px solid #d7dbe0;
+    border-radius:10px;
+    padding:0 34px 0 12px;
+    outline:none;
+    background:#fff;
+}
+
+.search-input:focus{
+    border-color:#7aa7ff;
+    box-shadow:0 0 0 3px rgba(122,167,255,.25);
+}
+
+/* Botón X (limpiar) */
+.clear-btn{
+    position:absolute;
+    right:8px;
+    height:22px;
+    width:22px;
+    border:none;
+    background:#eef1f4;
+    border-radius:999px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+}
+
+.clear-btn:hover{
+    background:#dfe5ea;
+}
+
+/* Responsive */
+@media (max-width:768px){
+    .search-input{ width:160px; }
+    .topbar{ margin:0 10px; }
+}
+</style>
