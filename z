@@ -85,3 +85,227 @@
         </div>
     </div>
 }
+
+
+/* ===== TOPBAR GENERAL ===== */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.topbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* ===== OPCIONES IZQUIERDA ===== */
+.topbar-left {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Estilo base para todas las opciones */
+.SeleccionarOpcion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.SeleccionarOpcion:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ESTADOS ACTIVOS CON DIFERENTES FONDOS */
+.SeleccionarOpcion.Active[data-vista="Todas"] {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.SeleccionarOpcion.Active[data-vista="Tablero"] {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    border-color: rgba(76, 175, 80, 0.4);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+}
+
+.SeleccionarOpcion.Active[data-vista="Cronograma"] {
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+    border-color: rgba(255, 152, 0, 0.4);
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
+}
+
+/* Efecto de onda al hacer clic */
+.SeleccionarOpcion::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.SeleccionarOpcion:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(40, 40);
+        opacity: 0;
+    }
+}
+
+/* ===== ICONOS ===== */
+.SeleccionarOpcion i,
+.SeleccionarOpcion .icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.SeleccionarOpcion:hover i,
+.SeleccionarOpcion:hover .icon {
+    transform: scale(1.1);
+}
+
+/* ===== BARRA DERECHA (BÚSQUEDA) ===== */
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Campo de búsqueda moderno */
+.topbar-search-input {
+    padding: 10px 16px 10px 44px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    min-width: 280px;
+    position: relative;
+}
+
+.topbar-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.topbar-search-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: white;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+    min-width: 320px;
+}
+
+/* Icono de búsqueda dentro del input */
+.topbar-search-input::before {
+    content: "🔍";
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== BOTONES ADICIONALES ===== */
+.OptionButton {
+    padding: 10px 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.OptionButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .topbar {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+    }
+    
+    .topbar-left, .topbar-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .topbar-search-input {
+        min-width: 200px;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .topbar-search-input:focus {
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .SeleccionarOpcion {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    
+    .topbar-search-input {
+        min-width: 180px;
+    }
+}
