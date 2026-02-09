@@ -1,0 +1,17 @@
+/* Quitar la línea debajo de la barra */
+div[style*="margin: 0px 20px"][style*="justify-content: space-between"],
+div[style*="margin:0px 20px"][style*="justify-content: space-between"]{
+    border-bottom: none !important;
+    box-shadow: none !important;   /* por si la "línea" era sombra */
+}
+
+/* Si esa línea es un <hr> justo después de la barra */
+div[style*="margin: 0px 20px"][style*="justify-content: space-between"] + hr,
+div[style*="margin:0px 20px"][style*="justify-content: space-between"] + hr{
+    display: none !important;
+}
+
+/* Si la línea es un borde del contenedor interno */
+div[style*="margin: 0px 20px"][style*="justify-content: space-between"] *{
+    border-bottom-color: transparent !important;
+}
