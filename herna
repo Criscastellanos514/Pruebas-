@@ -474,3 +474,215 @@ div[style*="display:none"] {
                 Display="false" />
     </div>
 </div>
+
+/* ===== TOPBAR AZUL TURQUESA ===== */
+.topbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px 24px !important;
+    background: linear-gradient(135deg, #40E0D0 0%, #20B2AA 100%) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 6px 20px rgba(64, 224, 208, 0.25) !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+    z-index: 100 !important;
+    overflow: visible !important;
+}
+
+/* ===== OPCIONES IZQUIERDA ===== */
+.topbar-left {
+    display: flex !important;
+    gap: 10px !important;
+    align-items: center !important;
+}
+
+/* Botones principales - FONDO BLANCO */
+.SeleccionarOpcion {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 10px 18px !important;
+    border-radius: 10px !important;
+    background: white !important;
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    color: #2C3E50 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Hover */
+.SeleccionarOpcion:hover {
+    background: #F8F9FA !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Estados ACTIVOS */
+.SeleccionarOpcion.active {
+    border-width: 2px !important;
+    font-weight: 700 !important;
+}
+
+/* Colores para activos (si tu HTML genera clase .active) */
+.SeleccionarOpcion.active.todas {
+    border-color: #E74C3C !important;
+    color: #E74C3C !important;
+    background: #FDEDEC !important;
+}
+
+.SeleccionarOpcion.active.tablero {
+    border-color: #2ECC71 !important;
+    color: #2ECC71 !important;
+    background: #EAFAF1 !important;
+}
+
+.SeleccionarOpcion.active.cronograma {
+    border-color: #F39C12 !important;
+    color: #F39C12 !important;
+    background: #FEF9E7 !important;
+}
+
+/* ===== BARRA DERECHA ===== */
+.topbar-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+}
+
+/* ===== BUSCADOR - TRABAJA con TU HTML ===== */
+/* Estilo para el input que ya tienes */
+.topbar-search-input,
+input[type="text"][placeholder*="Buscar"],
+input[placeholder*="Search"] {
+    padding: 10px 16px !important;
+    border-radius: 10px !important;
+    border: 2px solid rgba(255, 255, 255, 0.9) !important;
+    background: white !important;
+    color: #2C3E50 !important; /* TEXTO OSCURO */
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    min-width: 250px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    outline: none !important;
+}
+
+/* Placeholder */
+.topbar-search-input::placeholder,
+input[type="text"][placeholder*="Buscar"]::placeholder,
+input[placeholder*="Search"]::placeholder {
+    color: #7F8C8D !important;
+    font-weight: 400 !important;
+}
+
+/* Focus */
+.topbar-search-input:focus,
+input[type="text"][placeholder*="Buscar"]:focus,
+input[placeholder*="Search"]:focus {
+    border-color: white !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3), 
+                0 6px 20px rgba(0, 0, 0, 0.15) !important;
+    background: white !important;
+    color: #2C3E50 !important;
+}
+
+/* ===== BOTONES DE OPCIÓN (Filtrar, Ordenar, etc) ===== */
+/* Estilo para elementos con clase Option (tus componentes) */
+.Option {
+    padding: 10px 16px !important;
+    border-radius: 10px !important;
+    background: white !important;
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    color: #2C3E50 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.Option:hover {
+    background: #F8F9FA !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ===== BOTÓN DE ORDEN/FILTRO ===== */
+.orderFilterBtn,
+div[onclick*="showModal"],
+div[style*="background: #EFF5FC"] {
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    justify-content: center !important;
+    background: white !important !important; /* Blanco */
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 30px !important;
+    color: #2C3E50 !important; /* Texto oscuro */
+    height: 36px !important;
+    padding: 0 16px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+}
+
+.orderFilterBtn:hover,
+div[onclick*="showModal"]:hover {
+    background: #F8F9FA !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ===== ICONOS ===== */
+/* Asegurar iconos visibles */
+.icon,
+i,
+svg,
+[class*="icon"],
+[class*="Icon"] {
+    color: #40E0D0 !important; /* Color turquesa */
+    font-size: 16px !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .topbar {
+        flex-direction: column !important;
+        gap: 15px !important;
+        padding: 15px !important;
+    }
+    
+    .topbar-left, .topbar-right {
+        width: 100% !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .topbar-search-input,
+    input[type="text"][placeholder*="Buscar"] {
+        min-width: 200px !important;
+        width: 100% !important;
+        max-width: 400px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .SeleccionarOpcion, .Option {
+        padding: 8px 14px !important;
+        font-size: 13px !important;
+    }
+    
+    .topbar-search-input,
+    input[type="text"][placeholder*="Buscar"] {
+        min-width: 180px !important;
+        padding: 8px 12px !important;
+    }
+}
