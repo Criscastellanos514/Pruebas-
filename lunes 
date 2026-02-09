@@ -1,0 +1,153 @@
+/* =========================================================
+   ContainerBase.razor.css (COMPLETO)
+   ========================================================= */
+
+/* ---------- TOPBAR (barra bonita, fina, centrada) ---------- */
+.topbar{
+  height: 44px;               /* fina */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 14px;
+  margin: 10px 0 8px 0;
+
+  border-radius: 16px;
+
+  /* Azul turquesa (degradado suave) */
+  background: linear-gradient(90deg, #0097B2 0%, #10B6A9 100%);
+
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+  overflow: visible;          /* NO recortar iconos */
+}
+
+.topbar-left,
+.topbar-right{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --- CRÍTICO: evita que tus componentes internos se suban o se pierdan --- */
+::deep .topbar *{
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+/* Forzar todos los botones/links dentro de la topbar */
+::deep .topbar button,
+::deep .topbar a,
+::deep .topbar [role="button"],
+::deep .topbar .SeleccionarOpcion{
+  height: 100% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  padding: 0 10px !important;
+  margin: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+
+  color: #ffffff !important;           /* letras blancas */
+  font-weight: 600 !important;
+  font-size: 13px !important;
+
+  cursor: pointer !important;
+}
+
+/* Hover bonito */
+::deep .topbar button:hover,
+::deep .topbar a:hover,
+::deep .topbar .SeleccionarOpcion:hover{
+  background: rgba(255,255,255,.14) !important;
+}
+
+/* Activo (si tu Option ya agrega clase activa, esto ayuda visual) */
+::deep .topbar .activo,
+::deep .topbar .SeleccionarOpcion.activo{
+  background: rgba(255,255,255,.18) !important;
+}
+
+/* SVG iconos blancos SI O SI */
+::deep .topbar svg{
+  display: block !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+::deep .topbar svg,
+::deep .topbar svg *{
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* ---------- BUSCADOR ---------- */
+.topbar-search{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.topbar-search-input{
+  height: 30px;
+  width: 240px;
+
+  border-radius: 999px;
+  border: 0;
+
+  padding: 0 12px;
+  outline: none;
+
+  background: #ffffff;
+  color: #0f172a;
+
+  font-weight: 700;          /* negrita */
+  font-size: 13px;
+}
+
+/* placeholder (gris suave) */
+.topbar-search-input::placeholder{
+  color: rgba(15, 23, 42, .60);
+  font-weight: 700;
+}
+
+/* ---------- Cosas que ya tenías (las dejo para no romper tu layout) ---------- */
+.container-scrollable{
+  height: calc(100vh - 10vh);
+  overflow-y: auto;
+}
+
+/* Modal y botones que ya tenías */
+.modalOption{
+  position: absolute;
+  width: 400px;
+  background-color: white;
+  z-index: 1;
+  top: 25px;
+  border-radius: 11px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contenedor-boton{
+  min-width: 150px;
+  border: 1px solid #e2e2e2;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  border-radius: 8px;
+}
