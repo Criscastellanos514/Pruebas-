@@ -686,3 +686,16 @@ svg,
         padding: 8px 12px !important;
     }
 }
+
+// En tu code-behind o @code block
+private string GetActiveClass(string vista)
+{
+    string baseClass = "SeleccionarOpcion";
+    
+    if (EsActiv(vista))
+    {
+        return $"{baseClass} active {vista.ToLower()}";
+    }
+    
+    return baseClass;
+}
