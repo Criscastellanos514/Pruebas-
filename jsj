@@ -1,0 +1,35 @@
+@* Barra de Opciones *@
+<div class="topBar">
+
+    <div class="topBarLeft">
+        <Option _HandleClick="@((async()=> { await DisplayView("Todas"); }))"
+                Title="Todas" IconName="table" Activo="@EsActivo("Todas")"
+                _HandelClass="topBarBtn" />
+
+        <Option _HandleClick="@((async()=> { await DisplayView("Tablero"); }))"
+                Title="Tablero" IconName="table-2" Activo="@EsActivo("Tablero")"
+                _HandelClass="topBarBtn" />
+
+        <Option _HandleClick="@((async()=> { await DisplayView("Cronograma"); }))"
+                Title="Cronograma" IconName="calendar-check" Activo="@EsActivo("Cronograma")"
+                _HandelClass="topBarBtn" />
+    </div>
+
+    <div class="topBarRight">
+        <Option Title="Filtrar" IconName="arrow-down-wide-narrow" Display="false" EnviarFiltros="LlenarFiltros" />
+
+        <OptionDropDown Option="FillDictionary" removeToList="RemoveToList" FilterList="@FilterList" Filter="FillFilterList"
+                        IconName="arrow-down-up" MostrarIcono="true" />
+
+        <Option _HandleClick="DisplaySearch" Title="Buscar" IconName="search" Display="false" />
+
+        <input @oninput="AsignText"
+               class="topBarSearchInput"
+               style="@(Search ? "display:block" : "display:none")"
+               type="text"
+               placeholder="Buscar..." />
+
+        <Option Title="Opciones" IconName="ellipsis" Display="false" />
+    </div>
+
+</div>
