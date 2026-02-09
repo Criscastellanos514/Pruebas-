@@ -1,0 +1,87 @@
+<div class="topbar">
+    <div class="topbar-left">
+        <Option HandleClick="@(async () => { await DisplayViewModel("Todas"); })" 
+                Title="Todas" 
+                IconName="table" 
+                Active="@EsActive("Todas")" 
+                _HandleClass="SelectIconarOpcion" />
+                
+        <Option HandleClick="@(async () => { await DisplayViewModel("Tablero"); })" 
+                Title="Tablero" 
+                IconName="table-2" 
+                Active="@EsActive("Tablero")" 
+                _HandleClass="SelectIconarOpcion" />
+                
+        <Option HandleClick="@(async () => { await DisplayViewModel("Cronograma"); })" 
+                Title="Cronograma" 
+                IconName="calendar-check" 
+                Active="@EsActive("Cronograma")" 
+                _HandleClass="SelectIconarOpcion" />
+    </div>
+
+    <div class="topbar-right">
+        <Option Title="Filtrar" 
+                IconName="arrow-down-side-narrow" 
+                Display="false" 
+                EnviarFiltros="LlenarFiltros" />
+                
+        <Option DropDown 
+                Option="FillDictionary" 
+                RemoveTotal="RemoveTotal" 
+                FilterList="@FilterList" 
+                FillTotal="FillTotal" 
+                IconName="arrow-down-up" 
+                RestarIcon="true" />
+                
+        <Option HandleClick="DisplaySearch" 
+                Title="Buscar" 
+                IconName="search" 
+                Display="false" />
+                
+        <input class="topbar-search-input" 
+               type="text" 
+               placeholder="Buscar..." 
+               @oninput="HandleSearchInput"
+               disabled="@(!IsSearchEnabled)" />
+               
+        <Option Title="Opciones" 
+                ToggleButtonText="Utilizar" 
+                Display="false" />
+    </div>
+</div>
+
+<hr style="margin-top: 7px;" />
+
+@* Barra de Orden/Filtros *@
+@if (FilterList?.Count > 0)
+{
+    <div style="display: flex; gap: 20px; margin: 0 20px;">
+        <div style="width: 12%; position: relative;">
+            @* Botón de Orden *@
+            <div @onclick="ShowModal" 
+                 style="display: flex;
+                        gap: 5px;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                        background: #EFF5FC;
+                        border: 2px solid #D61B4A;
+                        border-radius: 30px;
+                        color: #6868FA;
+                        height: 26.17px;
+                        cursor: pointer;">
+                
+                <Icon Name="arrow-down-up" Width="16" Height="16" />
+                
+                @if (FilterList.Count > 1)
+                {
+                    <span style="font-size: small;">@FilterList.Count órdenes</span>
+                }
+                else
+                {
+                    <span style="font-size: small;">@FirstFilter</span>
+                }
+            </div>
+        </div>
+    </div>
+}
