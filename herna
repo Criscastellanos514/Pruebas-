@@ -419,3 +419,58 @@ div[style*="display:none"] {
         font-size: 14px !important;
     }
 }
+
+<div class="topbar">
+    <div class="topbar-left">
+        <!-- Opciones principales -->
+        <Option HandleClick="@(async () => { await DisplayVen("Todas"); })" 
+                Title="Todas" 
+                IconName="table" 
+                Active="@EsActiv("Todas")" 
+                _HandleClass="SeleccionarOpcion"
+                AdditionalAttributes="@(new Dictionary<string, object> { { "data-view", "Todas" } })" />
+        
+        <Option HandleClick="@(async () => { await DisplayVen("Tablero"); })" 
+                Title="Tablero" 
+                IconName="table-2" 
+                Active="@EsActiv("Tablero")" 
+                _HandleClass="SeleccionarOpcion"
+                AdditionalAttributes="@(new Dictionary<string, object> { { "data-view", "Tablero" } })" />
+        
+        <Option HandleClick="@(async () => { await DisplayVen("Cronograma"); })" 
+                Title="Cronograma" 
+                IconName="calendar-check" 
+                Active="@EsActiv("Cronograma")" 
+                _HandleClass="SeleccionarOpcion"
+                AdditionalAttributes="@(new Dictionary<string, object> { { "data-view", "Cronograma" } })" />
+    </div>
+    
+    <div class="topbar-right">
+        <!-- Buscador con icono integrado -->
+        <div class="search-container">
+            <input class="topbar-search-input" 
+                   type="text" 
+                   placeholder="Buscar proyectos, tareas..." 
+                   @oninput="HandleSearch"
+                   @bind="searchText" />
+            <div class="search-icon">🔍</div>
+        </div>
+        
+        <!-- Botones adicionales -->
+        <Option Title="Filtrar" 
+                IconName="filter" 
+                _HandleClass="OptionButton"
+                HandleClick="ToggleFiltros" />
+        
+        <Option Title="Ordenar" 
+                IconName="arrow-up-down" 
+                _HandleClass="OptionButton"
+                HandleClick="ToggleOrden" />
+        
+        <!-- Más opciones si necesitas -->
+        <Option Title="Opciones" 
+                IconName="settings" 
+                _HandleClass="OptionButton"
+                Display="false" />
+    </div>
+</div>
