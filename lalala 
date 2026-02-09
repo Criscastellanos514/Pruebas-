@@ -1,0 +1,462 @@
+/* ========================================================
+MEJORAS CSS PARA TUS CLASES EXISTENTES
+Solo se agregan estilos a lo que ya tienes
+NO requiere cambios en HTML
+======================================================== */
+
+/* ===== MEJORAS PARA .modalOption ===== */
+.modalOption {
+/* Tus estilos actuales se mantienen, solo agregamos: */
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+opacity: 0;
+transform: translateY(-10px);
+pointer-events: none;
+box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modalOption.show,
+.modalOption:not([style*=“display: none”]) {
+opacity: 1;
+transform: translateY(0);
+pointer-events: all;
+}
+
+/* ===== MEJORAS PARA .contenedor-boton ===== */
+.contenedor-boton {
+/* Animaciones suaves al hover */
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+overflow: hidden;
+cursor: pointer;
+}
+
+/* Efecto de brillo que se desliza */
+.contenedor-boton::before {
+content: ‘’;
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.15), transparent);
+transition: left 0.5s ease;
+}
+
+.contenedor-boton:hover::before {
+left: 100%;
+}
+
+.contenedor-boton:hover {
+border-color: #3b82f6;
+box-shadow: 0 6px 16px rgba(59, 130, 246, 0.2);
+transform: translateY(-3px);
+}
+
+.contenedor-boton:active {
+transform: translateY(-1px);
+box-shadow: 0 3px 10px rgba(59, 130, 246, 0.25);
+}
+
+/* ===== MEJORAS PARA .container-scrollable ===== */
+.container-scrollable {
+scroll-behavior: smooth;
+}
+
+/* Scrollbar personalizado y moderno */
+.container-scrollable::-webkit-scrollbar {
+width: 10px;
+}
+
+.container-scrollable::-webkit-scrollbar-track {
+background: #f1f5f9;
+border-radius: 10px;
+margin: 4px 0;
+}
+
+.container-scrollable::-webkit-scrollbar-thumb {
+background: linear-gradient(180deg, #3b82f6, #2563eb);
+border-radius: 10px;
+transition: background 0.3s ease;
+}
+
+.container-scrollable::-webkit-scrollbar-thumb:hover {
+background: linear-gradient(180deg, #2563eb, #1d4ed8);
+}
+
+/* ===== MEJORAS PARA INPUTS DE BÚSQUEDA ===== */
+/* Asumiendo que tienes inputs con type=“text” */
+input[type=“text”],
+input[type=“search”] {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border-radius: 25px;
+outline: none;
+}
+
+input[type=“text”]:focus,
+input[type=“search”]:focus {
+border-color: #3b82f6;
+box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1),
+0 4px 20px rgba(59, 130, 246, 0.25);
+transform: translateY(-2px);
+}
+
+input[type=“text”]::placeholder,
+input[type=“search”]::placeholder {
+transition: color 0.3s ease;
+}
+
+input[type=“text”]:focus::placeholder,
+input[type=“search”]:focus::placeholder {
+color: #60a5fa;
+}
+
+/* ===== MEJORAS PARA OPCIONES/SELECTS ===== */
+option {
+padding: 10px;
+transition: background 0.2s ease;
+}
+
+select {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border-radius: 12px;
+cursor: pointer;
+}
+
+select:hover {
+border-color: #3b82f6;
+box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+}
+
+select:focus {
+border-color: #3b82f6;
+box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+outline: none;
+}
+
+/* ===== MEJORAS PARA BOTONES GENERALES ===== */
+button {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+cursor: pointer;
+position: relative;
+overflow: hidden;
+}
+
+button:hover {
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+transform: translateY(0);
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto ripple al hacer click */
+button::after {
+content: ‘’;
+position: absolute;
+top: 50%;
+left: 50%;
+width: 0;
+height: 0;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.4);
+transform: translate(-50%, -50%);
+transition: width 0.6s, height 0.6s;
+}
+
+button:active::after {
+width: 200px;
+height: 200px;
+}
+
+/* ===== MEJORAS PARA DIVS CLICKEABLES ===== */
+div[onclick],
+div[class*=“boton”],
+div[class*=“button”] {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+cursor: pointer;
+}
+
+div[onclick]:hover,
+div[class*=“boton”]:hover,
+div[class*=“button”]:hover {
+transform: translateY(-2px);
+}
+
+/* ===== MEJORAS PARA LISTAS ===== */
+ul li,
+ol li {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+}
+
+ul li:hover,
+ol li:hover {
+padding-left: 10px;
+background: rgba(59, 130, 246, 0.05);
+border-radius: 6px;
+}
+
+/* Indicador visual izquierdo al hover */
+ul li::before,
+ol li::before {
+content: ‘’;
+position: absolute;
+left: 0;
+top: 50%;
+transform: translateY(-50%);
+width: 0;
+height: 60%;
+background: #3b82f6;
+border-radius: 0 4px 4px 0;
+transition: width 0.3s ease;
+}
+
+ul li:hover::before,
+ol li:hover::before {
+width: 4px;
+}
+
+/* ===== MEJORAS PARA SPANS (Etiquetas, badges, etc) ===== */
+span[class*=“badge”],
+span[class*=“tag”],
+span[class*=“label”] {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+display: inline-block;
+}
+
+span[class*=“badge”]:hover,
+span[class*=“tag”]:hover,
+span[class*=“label”]:hover {
+transform: scale(1.05);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== MEJORAS PARA ICONOS SVG/ICONS ===== */
+svg,
+i[class*=“icon”],
+span[class*=“icon”] {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover svg,
+button:hover i[class*=“icon”],
+.contenedor-boton:hover svg,
+.contenedor-boton:hover i[class*=“icon”] {
+transform: scale(1.1) rotate(5deg);
+}
+
+/* ===== MEJORAS PARA CARDS/CONTENEDORES ===== */
+div[class*=“card”],
+div[class*=“contenedor”],
+div[class*=“container”] {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+div[class*=“card”]:hover,
+div[onclick][class*=“contenedor”]:hover {
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+transform: translateY(-4px);
+}
+
+/* ===== MEJORAS PARA TABLAS ===== */
+table {
+border-collapse: separate;
+border-spacing: 0;
+}
+
+table tr {
+transition: all 0.2s ease;
+}
+
+table tbody tr:hover {
+background: rgba(59, 130, 246, 0.05);
+transform: scale(1.01);
+box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+}
+
+table th,
+table td {
+transition: all 0.2s ease;
+}
+
+/* ===== MEJORAS PARA LINKS ===== */
+a {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+}
+
+a::after {
+content: ‘’;
+position: absolute;
+bottom: -2px;
+left: 0;
+width: 0;
+height: 2px;
+background: currentColor;
+transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:hover::after {
+width: 100%;
+}
+
+a:hover {
+transform: translateX(2px);
+}
+
+/* ===== MEJORAS PARA FORMULARIOS ===== */
+form div,
+form fieldset {
+transition: all 0.3s ease;
+}
+
+/* ===== MEJORAS PARA CHECKBOX Y RADIO ===== */
+input[type=“checkbox”],
+input[type=“radio”] {
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+input[type=“checkbox”]:hover,
+input[type=“radio”]:hover {
+transform: scale(1.1);
+}
+
+/* ===== ANIMACIONES DE ENTRADA ===== */
+/* Se aplican automáticamente a elementos cuando aparecen */
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes slideInRight {
+from {
+opacity: 0;
+transform: translateX(-30px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+
+/* Aplicar a nuevos elementos que se cargan */
+div[class*=“contenedor”]:not(.loaded) {
+animation: fadeInUp 0.5s ease-out;
+}
+
+/* ===== MEJORAS PARA DROPDOWNS ===== */
+[class*=“dropdown”],
+[class*=“menu”] {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[class*=“menu-item”]:hover {
+background: rgba(59, 130, 246, 0.1);
+padding-left: 20px;
+border-radius: 6px;
+}
+
+/* ===== MEJORAS PARA TOOLTIPS AUTOMÁTICOS ===== */
+[title] {
+position: relative;
+}
+
+[title]:hover::before {
+content: attr(title);
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+padding: 6px 12px;
+background: #1f2937;
+color: white;
+font-size: 13px;
+border-radius: 6px;
+white-space: nowrap;
+z-index: 1000;
+margin-bottom: 8px;
+opacity: 0;
+animation: tooltipFadeIn 0.3s ease forwards;
+}
+
+@keyframes tooltipFadeIn {
+from {
+opacity: 0;
+transform: translateX(-50%) translateY(-5px);
+}
+to {
+opacity: 1;
+transform: translateX(-50%) translateY(0);
+}
+}
+
+/* ===== MEJORAS PARA LOADING STATES ===== */
+[class*=“loading”],
+[class*=“spinner”] {
+animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+
+/* ===== MEJORAS PARA DISABLED ELEMENTS ===== */
+button:disabled,
+input:disabled,
+select:disabled {
+cursor: not-allowed;
+opacity: 0.6;
+transform: none !important;
+}
+
+button:disabled:hover,
+input:disabled:hover {
+box-shadow: none !important;
+}
+
+/* ===== MEJORAS RESPONSIVE ===== */
+@media (max-width: 768px) {
+.contenedor-boton:hover {
+transform: translateY(-2px);
+}
+
+```
+div[class*="card"]:hover {
+    transform: translateY(-2px);
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+```
+
+}
+
+/* ===== SUAVIZADO GENERAL ===== */
+
+- {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  }
+
+/* ===== FOCUS VISIBLE MEJORADO ===== */
+*:focus-visible {
+outline: 2px solid #3b82f6;
+outline-offset: 2px;
+border-radius: 4px;
+}
+
+/* ===== SCROLL SUAVE GLOBAL ===== */
+html {
+scroll-behavior: smooth;
+}
