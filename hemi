@@ -1,0 +1,137 @@
+/* El contenedor del botón (El filtro en sí) */
+.contenedor-boton {
+    /* Diseño Flexible */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    /* Estética de "Píldora" o Botón Moderno */
+    background-color: white;
+    border: 1px solid #e2e8f0; /* Un gris muy suave */
+    border-radius: 12px;       /* Bordes mucho más redondeados */
+    padding: 8px 16px;         /* Más espacio interno para que respire */
+    min-width: 140px;
+    justify-content: space-between; /* Icono y texto separados */
+    
+    /* Sombras y Transiciones */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 13px;
+    color: #475569; /* Gris oscuro elegante, no negro puro */
+    font-weight: 600;
+}
+
+/* Efecto al pasar el mouse por encima del botón */
+.contenedor-boton:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-1px); /* Se levanta un poquito */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* El menú desplegable (El modal flotante) */
+.modalOption {
+    position: absolute;
+    top: 110%; /* Un poquito separado del botón */
+    left: 0;
+    z-index: 50;
+    
+    /* Estética de Tarjeta Flotante (Como la imagen que mandaste) */
+    background-color: white;
+    width: 240px; /* Un poco más ancho para leer bien */
+    border-radius: 16px;
+    border: 1px solid #f1f5f9;
+    
+    /* Sombra profunda y suave (estilo Apple/iOS) */
+    box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    overflow: hidden; /* Para que el contenido no se salga de las curvas */
+    padding: 8px;
+}
+
+/* Opciones dentro del menú (Ascendente/Descendente) */
+.modalOption > div {
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: #334155;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modalOption > div:hover {
+    background-color: #f8fafc; /* Gris muy clarito al pasar el mouse */
+    color: #0f172a;
+}
+
+### 2. Actualiza tu HTML (`ContainerBase.razor`)
+
+En tu archivo Razor, mantén tu lógica pero limpia los estilos en línea (`style="..."`). Los estilos en línea ensucian el código y hacen difícil mantener el diseño.
+
+**Cambios clave a realizar en tu código:**
+1.  Elimina `style="display:flex..."` del div padre y ponle una clase (ej. `.filter-list`).
+2.  Asegúrate de que el `div` que envuelve al botón y al modal tenga `position: relative`. Esto es crucial para que el `.modalOption` con `position: absolute` flote justo debajo de *su* botón y no en cualquier lado de la pantalla.
+
+Así debería quedar tu estructura Razor (aproximadamente):
+
+```razor
+<!-- Contenedor principal de la lista de filtros -->
+<div class="filter-list" style="display:flex; gap:12px; padding: 10px;">
+
+    @foreach (var item in ListNameOrderFilter)
+    {
+        <!-- IMPORTANTE: relative aquí para que el modal sepa dónde posicionarse -->
+        <div style="position: relative;"> 
+            
+            <!-- EL BOTÓN -->
+            <div id="@item" 
+                 @onclick="@(() => ShowModalOrderBy(item.Key))" 
+                 class="contenedor-boton">
+                 
+                <!-- Icono izquierda (Opcional, si quieres mantenerlo) -->
+                <!-- <Icons Name="@Icons.GetValueOrDefault(item.Key).ToLower()" ... /> -->
+                
+                <span>@item.Key</span> <!-- El nombre del filtro -->
+                
+                <!-- Icono flechita derecha/abajo -->
+                <Icons Name="chevron-down" Width="14" Height="14" Color="#94a3b8" />
+            </div>
+
+            <!-- EL MODAL / DROPDOWN -->
+            @if (RenderModal == item.Key)
+            {
+                <div class="modalOption">
+                    <!-- Cabecera opcional pequeña -->
+                    <div style="font-size: 11px; text-transform: uppercase; color: #94a3b8; padding: 4px 12px; cursor: default;">
+                        Ordenar por
+                    </div>
+
+                    <!-- Opción Ascendente -->
+                    <div @onclick="@(() => ChangeOrderBy(NameinClass.GetValueOrDefault(item.Key), true))">
+                        <!-- Puedes poner un icono aquí si quieres -->
+                        <span style="font-weight: 500;">Ascendente</span>
+                        <!-- Indicador si está activo (opcional) -->
+                        @if(item.Value == true) { <span style="margin-left:auto; color:#3b82f6;">●</span> }
+                    </div>
+
+                    <!-- Opción Descendente -->
+                    <div @onclick="@(() => ChangeOrderBy(NameinClass.GetValueOrDefault(item.Key), false))">
+                        <span style="font-weight: 500;">Descendente</span>
+                        @if(item.Value == false) { <span style="margin-left:auto; color:#3b82f6;">●</span> }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+**Resumen de mejoras:**
+* **Bordes:** Pasamos de `8px` o bordes rectos a `12px` y `16px` para suavizar la vista.
+* **Sombras:** Usamos sombras difusas (`box-shadow`) en lugar de bordes negros/grises gruesos.
+* **Interacción:** Agregamos efectos `:hover` para que el usuario sepa que es clickeable.
+* **Espaciado:** Aumentamos el `padding` para que los textos no se vean apretados.
