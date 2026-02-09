@@ -1,0 +1,229 @@
+@using System.Net.Http
+@using System.Text.Json
+@inject HttpClient Http
+
+<div class="filters-container">
+    @* --- FILTROS DINÁMICOS --- *@
+    @foreach (var item in ListNameOrderFilter)
+    {
+        <div class="filter-wrapper">
+            <div class="filter-pill @(RenderModal == item.Key ? "active" : "")" 
+                 @onclick="@(() => ShowModalOrderBy(item.Key))">
+                 
+                <span class="icon-opacity">
+                    <Icons Name="@Icons.GetValueOrDefault(item.Key).ToLower()" Width="16" Height="16" />
+                </span>
+
+                <span class="filter-text">@item.Key</span>
+
+                <span class="chevron-icon">
+                    <Icons Name="chevron-down" Width="14" Height="14" />
+                </span>
+            </div>
+
+            @if (RenderModal == item.Key)
+            {
+                <div class="dropdown-card">
+                    <div class="dropdown-header">Ordenar por</div>
+
+                    <div class="dropdown-item" 
+                         @onclick="@(() => ChangeOrderBy(NameinClass.GetValueOrDefault(item.Key), true))">
+                        <span>Ascendente</span>
+                        @if (item.Value == true) { <span class="active-dot">●</span> }
+                    </div>
+
+                    <div class="dropdown-item" 
+                         @onclick="@(() => ChangeOrderBy(NameinClass.GetValueOrDefault(item.Key), false))">
+                        <span>Descendente</span>
+                        @if (item.Value == false) { <span class="active-dot">●</span> }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    @* --- BOTÓN INTELIGENTE GEMINI --- *@
+    <div class="filter-wrapper">
+        <button class="ai-button @(isAnalyzing ? "loading" : "")" @onclick="AnalyzeBoardWithGemini">
+            @if (isAnalyzing)
+            {
+                <span class="spinner"></span>
+                <span>Pensando...</span>
+            }
+            else
+            {
+                <span>✨ Resumen IA</span>
+            }
+        </button>
+
+        @if (!string.IsNullOrEmpty(aiSummary))
+        {
+            <div class="ai-summary-card">
+                <div class="ai-summary-header">
+                    <span>✨ Análisis de Gemini</span>
+                    <button class="close-btn" @onclick="@(() => aiSummary = "")">×</button>
+                </div>
+                <div class="ai-summary-body">
+                    @aiSummary
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private bool isAnalyzing = false;
+    private string aiSummary = "";
+    private const string apiKey = ""; // La API Key se maneja internamente
+
+    private async Task AnalyzeBoardWithGemini()
+    {
+        if (isAnalyzing) return;
+        isAnalyzing = true;
+        aiSummary = "";
+
+        try
+        {
+            var currentStatus = string.Join(", ", ListNameOrderFilter.Select(f => $"{f.Key}: {(f.Value == true ? "Asc" : "Desc")}"));
+            var prompt = $"Analiza esta configuración de filtros en un Kanban: {currentStatus}. Dame un consejo de productividad de 2 líneas.";
+
+            var payload = new { contents = new[] { new { parts = new[] { new { text = prompt } } } } };
+
+            HttpResponseMessage response = null;
+            for (int i = 0; i < 5; i++) // Reintentos con Backoff
+            {
+                var request = new HttpRequestMessage(HttpMethod.Post, $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key={apiKey}");
+                request.Content = new StringContent(JsonSerializer.Serialize(payload), System.Text.Encoding.UTF8, "application/json");
+                response = await Http.SendAsync(request);
+                if (response.IsSuccessStatusCode) break;
+                await Task.Delay((int)Math.Pow(2, i) * 1000);
+            }
+
+            if (response != null && response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                using var doc = JsonDocument.Parse(json);
+                aiSummary = doc.RootElement.GetProperty("candidates")[0].GetProperty("content").GetProperty("parts")[0].GetProperty("text").GetString();
+            }
+        }
+        catch { aiSummary = "Error al conectar con la IA."; }
+        finally { isAnalyzing = false; }
+    }
+}
+
+.filters-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 10px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.filter-wrapper { position: relative; }
+
+.filter-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 8px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+    min-width: 150px;
+}
+
+.filter-pill:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.filter-pill.active {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+.filter-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    flex-grow: 1;
+}
+
+.dropdown-card {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    z-index: 100;
+    background: white;
+    width: 220px;
+    border-radius: 16px;
+    padding: 6px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-item:hover { background: #f1f5f9; }
+
+.ai-button {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(99,102,241,0.3);
+}
+
+.ai-summary-card {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 12px;
+    width: 280px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.ai-summary-header {
+    padding: 10px;
+    background: #f8fafc;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: bold;
+    color: #6366f1;
+}
+
+.ai-summary-body { padding: 12px; font-size: 13px; color: #475569; }
+
+.spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
