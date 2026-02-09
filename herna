@@ -173,3 +173,249 @@ div[style*="display:none"] {
                 style="display: inline-flex !important;" />
     </div>
 </div>
+
+
+/* ===== TOPBAR AZUL TURQUESA ===== */
+.topbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px 24px !important;
+    background: linear-gradient(135deg, #40E0D0 0%, #20B2AA 100%) !important; /* Azul turquesa */
+    border-radius: 12px !important;
+    box-shadow: 0 6px 20px rgba(64, 224, 208, 0.25) !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+    z-index: 100 !important;
+    overflow: visible !important;
+}
+
+/* Efecto de brillo sutil */
+.topbar::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent) !important;
+    border-radius: 12px !important;
+    pointer-events: none !important;
+}
+
+/* ===== OPCIONES IZQUIERDA (BLANCAS) ===== */
+.topbar-left {
+    display: flex !important;
+    gap: 10px !important;
+    align-items: center !important;
+    position: relative !important;
+    z-index: 101 !important;
+}
+
+/* Botones principales - FONDO BLANCO */
+.SeleccionarOpcion {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 10px 18px !important;
+    border-radius: 10px !important;
+    background: white !important; /* BLANCO */
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    color: #2C3E50 !important; /* Texto oscuro para contraste */
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Hover - Efecto elevado */
+.SeleccionarOpcion:hover {
+    background: #F8F9FA !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    border-color: white !important;
+}
+
+/* Estados ACTIVOS con diferentes colores */
+.SeleccionarOpcion.active {
+    border-width: 2px !important;
+    font-weight: 700 !important;
+}
+
+.SeleccionarOpcion.active[data-view="Todas"] {
+    border-color: #E74C3C !important;
+    color: #E74C3C !important;
+    background: #FDEDEC !important;
+}
+
+.SeleccionarOpcion.active[data-view="Tablero"] {
+    border-color: #2ECC71 !important;
+    color: #2ECC71 !important;
+    background: #EAFAF1 !important;
+}
+
+.SeleccionarOpcion.active[data-view="Cronograma"] {
+    border-color: #F39C12 !important;
+    color: #F39C12 !important;
+    background: #FEF9E7 !important;
+}
+
+/* Iconos dentro de botones */
+.SeleccionarOpcion i,
+.SeleccionarOpcion .icon {
+    color: #40E0D0 !important; /* Color turquesa para iconos */
+    font-size: 16px !important;
+    transition: transform 0.3s ease !important;
+}
+
+.SeleccionarOpcion:hover i,
+.SeleccionarOpcion:hover .icon {
+    transform: scale(1.1) !important;
+}
+
+/* ===== BARRA DERECHA - BUSCADOR Y MÁS ===== */
+.topbar-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    position: relative !important;
+    z-index: 101 !important;
+}
+
+/* ===== BUSCADOR - DISEÑO PROFESIONAL ===== */
+.topbar-search-input {
+    padding: 10px 45px 10px 16px !important;
+    border-radius: 10px !important;
+    border: 2px solid rgba(255, 255, 255, 0.9) !important;
+    background: white !important; /* FONDO BLANCO */
+    color: #2C3E50 !important; /* TEXTO OSCURO - BIEN VISIBLE */
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    min-width: 250px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    outline: none !important;
+}
+
+/* Placeholder gris suave */
+.topbar-search-input::placeholder {
+    color: #7F8C8D !important;
+    font-weight: 400 !important;
+}
+
+/* Efecto al enfocar */
+.topbar-search-input:focus {
+    border-color: white !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3), 
+                0 6px 20px rgba(0, 0, 0, 0.15) !important;
+    min-width: 280px !important;
+    background: white !important;
+    color: #2C3E50 !important;
+}
+
+/* Contenedor del buscador con icono */
+.search-container {
+    position: relative !important;
+    display: inline-block !important;
+}
+
+/* Icono de lupa dentro del buscador */
+.search-icon {
+    position: absolute !important;
+    right: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: #40E0D0 !important;
+    font-size: 16px !important;
+    pointer-events: none !important;
+}
+
+/* ===== BOTONES ADICIONALES (FILTRAR, ORDENAR, ETC) ===== */
+.OptionButton {
+    padding: 10px 16px !important;
+    border-radius: 10px !important;
+    background: white !important; /* BLANCO */
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    color: #2C3E50 !important; /* Texto oscuro */
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.OptionButton:hover {
+    background: #F8F9FA !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    border-color: white !important;
+}
+
+/* Iconos en botones adicionales */
+.OptionButton i,
+.OptionButton .icon {
+    color: #40E0D0 !important; /* Turquesa para iconos */
+    font-size: 16px !important;
+}
+
+/* ===== DROPDOWNS Y MENÚS ===== */
+/* Asegurar que se vean sobre la barra */
+.dropdown-menu,
+.ModelOption,
+.modal-content {
+    position: absolute !important;
+    z-index: 9999 !important;
+    background: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+    overflow: visible !important;
+    margin-top: 5px !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .topbar {
+        flex-direction: column !important;
+        gap: 15px !important;
+        padding: 15px !important;
+    }
+    
+    .topbar-left, .topbar-right {
+        width: 100% !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .topbar-search-input {
+        min-width: 200px !important;
+        width: 100% !important;
+        max-width: 400px !important;
+    }
+    
+    .topbar-search-input:focus {
+        min-width: 220px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .SeleccionarOpcion, .OptionButton {
+        padding: 8px 14px !important;
+        font-size: 13px !important;
+    }
+    
+    .topbar-search-input {
+        min-width: 180px !important;
+        padding: 8px 40px 8px 12px !important;
+    }
+    
+    .search-icon {
+        right: 12px !important;
+        font-size: 14px !important;
+    }
+}
