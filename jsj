@@ -182,3 +182,38 @@ input[type="text"]:focus{
 .modalOption > div:hover{
     background: #f3f4f6;
 }  
+
+
+/* ===============================
+   TEXTO DE LA BARRA (BLANCO)
+   =============================== */
+
+/* texto e iconos de toda la barra */
+div[style*="justify-content: space-between"] span,
+div[style*="justify-content: space-between"] p,
+div[style*="justify-content: space-between"] label,
+div[style*="justify-content: space-between"] i,
+div[style*="justify-content: space-between"] svg{
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+/* ===============================
+   TEXTO DEL BUSCADOR (NEGRO)
+   =============================== */
+
+input[type="text"]{
+    color: #111827 !important;      /* negro elegante */
+    font-weight: 500;
+}
+
+/* placeholder gris */
+input[type="text"]::placeholder{
+    color: #6b7280 !important;
+}
+
+/* si hay iconos dentro del buscador */
+input[type="text"] + svg,
+input[type="text"] ~ svg{
+    fill: #111827 !important;
+}
