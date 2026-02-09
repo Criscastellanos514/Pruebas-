@@ -151,3 +151,228 @@
   gap: 9px;
   border-radius: 8px;
 }
+
+/* =========================================================
+   ContainerBase.razor.css (REVISADO Y CORREGIDO)
+   ========================================================= */
+
+/* ---------- TOPBAR (barra bonita, fina, centrada) ---------- */
+.topbar{
+  height: 44px;               /* fina */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 14px;
+  margin: 10px 0 8px 0;
+
+  border-radius: 16px;
+
+  /* Azul turquesa (degradado suave) */
+  background: linear-gradient(90deg, #0097B2 0%, #10B6A9 100%);
+
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+  overflow: visible;          /* NO recortar iconos */
+  position: relative;         /* IMPORTANTE para posicionamiento interno */
+  z-index: 100;               /* Asegurar que esté por encima */
+}
+
+/* Grupos izquierdo y derecho */
+.topbar-left,
+.topbar-right{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 4px;                   /* Reducido para mejor espaciado */
+  position: relative;
+}
+
+/* --- CORRECCIÓN CRÍTICA: Contenedor para botones/iconos --- */
+::deep .topbar .button-container,
+::deep .topbar .icon-container {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  min-width: 44px !important; /* Tamaño táctil mínimo */
+}
+
+/* Forzar todos los botones/links dentro de la topbar */
+::deep .topbar button,
+::deep .topbar a,
+::deep .topbar [role="button"],
+::deep .topbar .SeleccionarOpcion{
+  height: 32px !important;    /* Altura fija para mejor control */
+  min-height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;        /* Espacio entre icono y texto */
+
+  padding: 0 12px !important;
+  margin: 0 2px !important;   /* Margen ligero entre botones */
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
+}
+
+/* --- CORRECCIÓN ESPECÍFICA PARA ICONOS --- */
+::deep .topbar .icon-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  position: relative !important;
+}
+
+/* Asegurar que SVG esté perfectamente centrado */
+::deep .topbar svg{
+  display: block !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important; /* Centrado perfecto */
+}
+
+/* Colores de iconos */
+::deep .topbar svg,
+::deep .topbar svg *{
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+  stroke-width: 0 !important;
+}
+
+/* Hover bonito */
+::deep .topbar button:hover,
+::deep .topbar a:hover,
+::deep .topbar .SeleccionarOpcion:hover{
+  background: rgba(255,255,255,.18) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Activo (si tu Option ya agrega clase activa, esto ayuda visual) */
+::deep .topbar .activo,
+::deep .topbar .SeleccionarOpcion.activo{
+  background: rgba(255,255,255,.25) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1) inset !important;
+}
+
+/* ---------- BUSCADOR ---------- */
+.topbar-search{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-search-input{
+  height: 30px;
+  width: 240px;
+  
+  border-radius: 999px;
+  border: 0;
+  
+  padding: 0 12px;
+  outline: none;
+  
+  background: #ffffff;
+  color: #0f172a;
+  
+  font-weight: 700;          /* negrita */
+  font-size: 13px;
+  
+  /* Sombra sutil para destacar */
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+/* placeholder (gris suave) */
+.topbar-search-input::placeholder{
+  color: rgba(15, 23, 42, .60);
+  font-weight: 700;
+}
+
+/* ---------- MEJORAS PARA DESPLEGABLES ---------- */
+::deep .topbar .dropdown-content {
+  position: absolute !important;
+  top: 100% !important;       /* Se despliega desde el botón */
+  left: 0 !important;
+  min-width: 180px !important;
+  background: white !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,.15) !important;
+  z-index: 1000 !important;    /* Por encima de todo */
+  margin-top: 4px !important;
+  overflow: hidden !important;
+  animation: fadeIn 0.2s ease !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- CORRECCIÓN ESPECÍFICA PARA COMPONENTES BLAZOR ---------- */
+/* Esto ayuda con componentes que tienen posicionamiento interno */
+::deep .topbar > * {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* Para botones con solo icono */
+::deep .topbar .icon-only {
+  width: 32px !important;
+  padding: 0 !important;
+  justify-content: center !important;
+}
+
+/* ---------- Layout existente (sin cambios) ---------- */
+.container-scrollable{
+  height: calc(100vh - 10vh);
+  overflow-y: auto;
+}
+
+/* Modal y botones que ya tenías */
+.modalOption{
+  position: absolute;
+  width: 400px;
+  background-color: white;
+  z-index: 1;
+  top: 25px;
+  border-radius: 11px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contenedor-boton{
+  min-width: 150px;
+  border: 1px solid #e2e2e2;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  border-radius: 8px;
+}
