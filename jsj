@@ -217,3 +217,173 @@ input[type="text"] + svg,
 input[type="text"] ~ svg{
     fill: #111827 !important;
 }
+
+
+/* =========================================================
+   ContainerBase.razor.css  (DEFINITIVO)
+   - Barra turquesa
+   - Texto barra blanco
+   - Buscador y dropdown con texto negro
+   - SIN CAMBIAR HTML
+   ========================================================= */
+
+/* ===============================
+   1) BARRA SUPERIOR (tu div flex principal)
+   =============================== */
+div[style*="justify-content: space-between"]{
+    background: linear-gradient(90deg, #1ccfcf, #16b3b3);
+    border-radius: 14px;
+    padding: 6px 14px;
+    margin: 0 20px;
+    box-shadow: 0 10px 22px rgba(0,0,0,.18);
+    position: relative;
+}
+
+/* ===============================
+   2) TEXTO / ICONOS DE LA BARRA (BLANCO)
+   =============================== */
+div[style*="justify-content: space-between"]{
+    color: #ffffff !important;
+}
+
+/* elementos comunes que usa tu componente Option */
+div[style*="justify-content: space-between"] a,
+div[style*="justify-content: space-between"] button,
+div[style*="justify-content: space-between"] span,
+div[style*="justify-content: space-between"] p,
+div[style*="justify-content: space-between"] label,
+div[style*="justify-content: space-between"] strong,
+div[style*="justify-content: space-between"] small,
+div[style*="justify-content: space-between"] div{
+    color: #ffffff !important;
+}
+
+/* iconos svg dentro de la barra */
+div[style*="justify-content: space-between"] svg{
+    fill: #ffffff !important;
+    color: #ffffff !important;
+    opacity: .95;
+}
+
+/* ===============================
+   3) TAB ACTIVO (tu clase actual)
+   =============================== */
+.SeleccionarOpcion{
+    background: rgba(255,255,255,.22);
+    border-radius: 999px;
+    padding: 6px 12px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.35);
+}
+
+.SeleccionarOpcion:hover{
+    background: rgba(255,255,255,.32);
+}
+
+/* ===============================
+   4) INPUT DE BÚSQUEDA (estilo “pill” de tu imagen)
+   =============================== */
+div[style*="justify-content: space-between"] input[type="text"]{
+    background: #ffffff !important;
+    color: #111827 !important;   /* negro */
+    border: none !important;
+    outline: none !important;
+
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    box-shadow: 0 10px 26px rgba(0,0,0,.25);
+    transition: box-shadow .15s ease;
+}
+
+div[style*="justify-content: space-between"] input[type="text"]::placeholder{
+    color: #6b7280 !important;
+}
+
+div[style*="justify-content: space-between"] input[type="text"]:focus{
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+
+/* ===============================
+   5) DROPDOWN / FORMULARIO (tu modalOption)
+   - fondo blanco
+   - texto negro
+   =============================== */
+.modalOption{
+    background: #ffffff !important;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 18px 40px rgba(0,0,0,.28);
+    overflow: hidden;
+}
+
+/* todo lo de adentro en negro */
+.modalOption,
+.modalOption *{
+    color: #111827 !important;
+}
+
+/* iconos dentro del dropdown en negro */
+.modalOption svg{
+    fill: #111827 !important;
+    color: #111827 !important;
+}
+
+/* items dentro del dropdown */
+.modalOption > div{
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background .12s ease;
+}
+
+.modalOption > div:hover{
+    background: #f3f4f6;
+}
+
+/* ===============================
+   6) BOTONES INTERNOS DEL DROPDOWN (si usas .contenedor-boton)
+   =============================== */
+.contenedor-boton{
+    min-width: 150px;
+    border: 1px solid #e5e7eb !important;
+    padding: 6px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #111827 !important;
+}
+
+.contenedor-boton:hover{
+    background: #f9fafb;
+}
+
+/* ===============================
+   7) SCROLL (tu clase existente)
+   =============================== */
+.container-scrollTable{
+    height: calc(100vh - 10vh);
+    overflow-y: auto;
+}
+
+/* ===============================
+   8) RESPONSIVE (para que no se rompa)
+   =============================== */
+@media (max-width: 720px){
+    div[style*="justify-content: space-between"]{
+        margin: 0 10px;
+        padding: 10px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    div[style*="justify-content: space-between"] input[type="text"]{
+        width: 100%;
+        min-width: 160px;
+    }
+}
