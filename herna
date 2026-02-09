@@ -130,3 +130,46 @@ div[style*="display:none"] {
     opacity: 1 !important;
     visibility: visible !important;
 }
+
+<div class="topbar">
+    <div class="topbar-left">
+        @Option HandleClick="@(async () => { await DisplayVen("Todas"); })" 
+                Title="Todas" 
+                IconName="table" 
+                Active="@EsActiv("Todas")" 
+                _HandleClass="SeleccionarOpcion"
+                style="display: inline-flex !important;" />
+        
+        @Option HandleClick="@(async () => { await DisplayVen("Tablero"); })" 
+                Title="Tablero" 
+                IconName="table-2" 
+                Active="@EsActiv("Tablero")" 
+                _HandleClass="SeleccionarOpcion"
+                style="display: inline-flex !important;" />
+        
+        @Option HandleClick="@(async () => { await DisplayVen("Cronograma"); })" 
+                Title="Cronograma" 
+                IconName="calendar-check" 
+                Active="@EsActiv("Cronograma")" 
+                _HandleClass="SeleccionarOpcion"
+                style="display: inline-flex !important;" />
+    </div>
+    
+    <div class="topbar-right">
+        <!-- Campo de búsqueda con texto negro -->
+        <input class="topbar-search-input" 
+               type="text" 
+               placeholder="Buscar..."
+               style="color: #000000 !important; background: white !important;" 
+               @oninput="TuMetodoBusqueda" />
+        
+        <!-- Otros botones -->
+        <Option Title="Filtrar" 
+                IconName="filter" 
+                style="display: inline-flex !important;" />
+        
+        <Option Title="Ordenar" 
+                IconName="arrow-up-down"
+                style="display: inline-flex !important;" />
+    </div>
+</div>
