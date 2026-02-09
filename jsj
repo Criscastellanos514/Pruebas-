@@ -33,3 +33,68 @@
     </div>
 
 </div>
+
+/* ===== BARRA SUPERIOR (TABS + ACCIONES) ===== */
+.topBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+
+    margin: 8px 20px;
+    padding: 8px 10px;
+
+    border-radius: 14px;
+    background: #ffffff;
+    border: 1px solid #e9e9e9;
+    box-shadow: 0 10px 24px rgba(0,0,0,.10);
+}
+
+.topBarLeft{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.topBarRight{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Botones de la izquierda (Todas/Tablero/Cronograma) */
+.topBarBtn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 12px;
+    border-radius: 999px;
+
+    border: 1px solid transparent;
+    background: transparent;
+
+    cursor: pointer;
+    user-select: none;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #212529;
+    transition: .15s ease;
+}
+
+/* hover */
+.topBarBtn:hover{
+    background: #f4f6fb;
+    border-color: #e6e8ef;
+}
+
+/* estado activo:
+   - Si tu componente Option pone una clase cuando Activo=true, aquí también la cubrimos.
+   - Si ya usas "SeleccionarOpcion" para el activo, también queda cubierto.
+*/
+.topBarBtn.active,
+.topBarBtn.Activo,
+.SeleccionarOpcion{
+    background: #eef3
