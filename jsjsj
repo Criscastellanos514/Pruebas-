@@ -1,0 +1,517 @@
+modalOption {
+    position: absolute;
+    width: 400px;
+    background-color: white;
+    top: 25px;
+    border-radius: 11px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+.modalOption.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+/* ===== BOTONES DE CONTENEDOR MEJORADOS ===== */
+
+.contenedor-boton {
+    min-width: 150px;
+    border: 1px solid #e2e2e2;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    background: white;
+}
+
+.contenedor-boton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.contenedor-boton:hover::before {
+    left: 100%;
+}
+
+.contenedor-boton:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    transform: translateY(-2px);
+}
+
+.contenedor-boton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
+}
+
+/* ===== CONTENEDOR SCROLLABLE MEJORADO ===== */
+
+.container-scrollable {
+    height: calc(100vh - 10vh);
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+/* Scrollbar personalizado */
+.container-scrollable::-webkit-scrollbar {
+    width: 8px;
+}
+
+.container-scrollable::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.container-scrollable::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #3b82f6, #2563eb);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.container-scrollable::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #2563eb, #1d4ed8);
+}
+
+/* ===== BARRA DE ORDEN Y FILTROS MEJORADA ===== */
+
+.barra-de-orden-filtros {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    animation: fadeInDown 0.5s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== BÚSQUEDA MEJORADA Y REDONDEADA ===== */
+
+.barra-busqueda {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.input-busqueda-container {
+    position: relative;
+    width: 100%;
+}
+
+input[type="text"].search-input {
+    width: 100%;
+    padding: 12px 45px 12px 20px;
+    border: 2px solid #e2e2e2;
+    border-radius: 25px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+input[type="text"].search-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+    transform: translateY(-1px);
+}
+
+input[type="text"].search-input::placeholder {
+    color: #9ca3af;
+    transition: color 0.3s ease;
+}
+
+input[type="text"].search-input:focus::placeholder {
+    color: #3b82f6;
+}
+
+/* Icono de búsqueda animado */
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+input[type="text"].search-input:focus ~ .search-icon {
+    color: #3b82f6;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* ===== FILTROS CON ANIMACIÓN MEJORADA ===== */
+
+.filter-button {
+    padding: 10px 20px;
+    border: 2px solid #e2e2e2;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #3b82f6;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.filter-button:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.filter-button:hover::after {
+    width: 80%;
+}
+
+.filter-button.active {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* ===== CARDS DE CONTENIDO CON HOVER MEJORADO ===== */
+
+.content-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 10px 0;
+    border: 1px solid #e2e2e2;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: linear-gradient(180deg, #3b82f6, #2563eb);
+    transition: height 0.3s ease;
+}
+
+.content-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-color: #3b82f6;
+}
+
+.content-card:hover::before {
+    height: 100%;
+}
+
+/* ===== LISTA DE ITEMS CON ANIMACIÓN ===== */
+
+.item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item-list li {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 6px 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    background: white;
+}
+
+.item-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 60%;
+    background: #3b82f6;
+    border-radius: 0 4px 4px 0;
+    transition: width 0.3s ease;
+}
+
+.item-list li:hover {
+    background: #f8fafc;
+    padding-left: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.item-list li:hover::before {
+    width: 4px;
+}
+
+/* ===== BOTONES ACCIÓN MEJORADOS ===== */
+
+.button-action {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.button-action::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.button-action:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.button-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.button-action:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* ===== DROPDOWN MEJORADO ===== */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1;
+    padding: 8px 0;
+    margin-top: 8px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-content a {
+    color: #374151;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin: 4px 8px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f3f4f6;
+    color: #3b82f6;
+    padding-left: 28px;
+}
+
+/* ===== BADGES Y TAGS MEJORADOS ===== */
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* ===== ANIMACIONES GLOBALES ===== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease;
+}
+
+.pulse-on-load {
+    animation: pulse 2s infinite;
+}
+
+/* ===== LOADING SPINNER MEJORADO ===== */
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== TOOLTIPS MEJORADOS ===== */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-size: 13px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1f2937 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    bottom: 130%;
+}
+
+/* ===== RESPONSIVO ===== */
+
+@media (max-width: 768px) {
+    .contenedor-boton {
+        min-width: 120px;
+        padding: 2px;
+    }
+    
+    input[type="text"].search-input {
+        padding: 10px 40px 10px 16px;
+        font-size: 14px;
+    }
+    
+    .barra-de-orden-filtros {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+}
