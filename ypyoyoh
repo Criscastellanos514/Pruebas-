@@ -93,3 +93,110 @@ div[style*="display: flex"][style*="gap: 14px"] input[type="text"]:focus{
     transform: translateY(-1px) !important;
     box-shadow: 0 18px 40px rgba(0,0,0,.16) !important;
 }
+
+/* =========================================================
+   CHIPS/PILLS DEFINITIVOS (SIN romper el buscador)
+   - No toca HTML
+   - No fuerza display en el input
+   ========================================================= */
+
+/* 1) Barra principal (la tuya real) */
+div[style*="justify-content: space-between"][style*="margin"]{
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* 2) Contenedores internos de la barra (los 2 grupos flex) */
+div[style*="justify-content: space-between"][style*="margin"] > div{
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+/* 3) CHIPS para cada opción (PERO EXCLUYE el input del buscador) */
+div[style*="justify-content: space-between"][style*="margin"] > div > *:not(input):not(.modalOption){
+    background: #ffffff !important;
+    border: 1px solid rgba(0,0,0,.14) !important;
+    border-radius: 999px !important;
+    padding: 7px 12px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+
+    box-shadow: 0 10px 22px rgba(0,0,0,.10) !important;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    cursor: pointer;
+}
+
+/* Hover levantado */
+div[style*="justify-content: space-between"][style*="margin"] > div > *:not(input):not(.modalOption):hover{
+    transform: translateY(-2px) !important;
+    box-shadow: 0 16px 34px rgba(0,0,0,.14) !important;
+    background: #fbfcff !important;
+}
+
+/* Active (click) */
+div[style*="justify-content: space-between"][style*="margin"] > div > *:not(input):not(.modalOption):active{
+    transform: translateY(-1px) scale(.99) !important;
+}
+
+/* 4) Activo (tu clase) */
+.SeleccionarOpcion{
+    background: #eef2ff !important;
+    border: 1px solid rgba(79,70,229,.25) !important;
+    box-shadow: 0 16px 34px rgba(0,0,0,.16) !important;
+}
+
+/* 5) Iconos dentro de chips */
+div[style*="justify-content: space-between"][style*="margin"] svg{
+    opacity: .92;
+    transition: transform .15s ease, opacity .15s ease;
+}
+
+div[style*="justify-content: space-between"][style*="margin"] svg:hover{
+    transform: translateY(-1px);
+    opacity: 1;
+}
+
+/* 6) BUSCADOR (NO tocamos display, solo estilo)
+   IMPORTANTE: aquí NO ponemos display !important
+*/
+div[style*="justify-content: space-between"][style*="margin"] input[type="text"]{
+    background: #ffffff !important;
+    color: #111827 !important;
+
+    border: 1px solid rgba(0,0,0,.14) !important;
+    border-radius: 999px !important;
+    padding: 0 14px !important;
+    height: 36px !important;
+
+    box-shadow: 0 14px 30px rgba(0,0,0,.12) !important;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+/* Focus elegante */
+div[style*="justify-content: space-between"][style*="margin"] input[type="text"]:focus{
+    transform: translateY(-1px);
+    box-shadow: 0 18px 40px rgba(0,0,0,.16) !important;
+}
+
+/* Placeholder */
+div[style*="justify-content: space-between"][style*="margin"] input[type="text"]::placeholder{
+    color: #6b7280 !important;
+}
+
+/* 7) Dropdown (si tu buscador usa .modalOption) */
+.modalOption{
+    background: #ffffff !important;
+    border: 1px solid rgba(0,0,0,.14) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 22px 55px rgba(0,0,0,.18) !important;
+    overflow: hidden !important;
+}
+
+/* texto visible en dropdown */
+.modalOption, .modalOption *{
+    color: #111827 !important;
+}
