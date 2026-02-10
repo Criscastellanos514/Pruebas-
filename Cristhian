@@ -235,3 +235,47 @@
     padding-right: 8px !important;
   }
 }
+
+
+/* ===========================
+   FIX RESPONSIVE (Cronograma/Tablas)
+   =========================== */
+
+/* Asegura que el layout no “reviente” por contenidos anchos */
+.page {
+  width: 100%;
+  overflow: hidden; /* evita scroll doble en toda la página */
+}
+
+/* CLAVE: en flex, si no pones min-width:0, los hijos empujan y rompen */
+main {
+  flex: 1 1 auto;
+  min-width: 0;      /* <<< CLAVE */
+  width: 100%;
+  overflow: hidden;  /* el scroll se maneja dentro del content */
+}
+
+/* Tu article es .content-body en el razor, aquí va el scroll */
+.content-body {
+  min-width: 0;        /* <<< CLAVE */
+  width: 100%;
+  height: calc(100vh - 3.5rem); /* tu top-row mide 3.5rem */
+  overflow: auto;      /* scroll vertical */
+  overflow-x: auto;    /* scroll horizontal para cronograma/tablas */
+  box-sizing: border-box;
+}
+
+/* Evita que componentes internos en flex empujen el ancho */
+.content-body > * {
+  min-width: 0;
+}
+
+/* En desktop (cuando ya estás en row con sidebar), esto es lo importante */
+@media (min-width: 641px) {
+  main {
+    min-width: 0;
+  }
+  .content-body {
+    min-width: 0;
+  }
+}
