@@ -126,4 +126,63 @@
         min-width: 150px;
         width: 100%;
     }
+}/* =========================
+   CRONOGRAMA RESPONSIVE FIX
+   ========================= */
+
+/* El contenedor principal del cronograma */
+:deep(.crono-main){
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+
+  /* deja que el contenido grande haga scroll en vez de romperse */
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+
+  /* si estaba en flex y te rompe, lo convertimos a bloque */
+  display: block !important;
+
+  /* suaviza scroll en touch */
+  -webkit-overflow-scrolling: touch;
+
+  /* evita “saltos” por padding/bordes */
+  box-sizing: border-box;
+}
+
+/* Si hay un wrapper de timeline adentro (súper común en gantt/crono) */
+:deep(.crono-timeline-container),
+:deep(.timeline-container),
+:deep(.gantt-container),
+:deep(.crono-content){
+  min-width: max-content !important; /* clave: que el timeline no se comprima */
+  width: max-content !important;
+}
+
+/* En layouts flex, esto evita que un hijo empuje y rompa todo */
+:deep(.card-container-mt-1),
+:deep(.container-scrollable),
+:deep(.crono-view-tabs){
+  min-width: 0 !important;
+}
+
+/* =========================
+   Ajustes para pantallas pequeñas
+   ========================= */
+@media (max-width: 992px){
+  :deep(.crono-main){
+    max-height: calc(100vh - 140px) !important; /* más espacio para header */
+  }
+}
+
+@media (max-width: 768px){
+  :deep(.crono-main){
+    max-height: calc(100vh - 170px) !important;
+    padding: 6px 6px !important;
+  }
+
+  /* baja un poco el tamaño de texto del timeline si aplica */
+  :deep(.crono-main *){
+    font-size: 12px;
+  }
 }
